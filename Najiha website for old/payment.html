@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout | Najiha</title>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./icon.css">
+    <link rel="stylesheet" href="./navebariconNtype.css">
+    <!-- <title>Najiha</title> -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        :root { --primary: #2c3e50; --accent: #e67e22; }
+        body { background-color: #f4f7f6; }
+        .checkout-container { margin-top: 50px; margin-bottom: 50px; }
+        .card-custom { border: none; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+        .method-icon { font-size: 1.5rem; margin-right: 10px; }
+        .btn-pay { background-color: var(--accent); color: white; width: 100%; font-weight: bold; padding: 12px; }
+        .btn-pay:hover { background-color: #d35400; color: white; }
+        body { background: #f8f9fa; padding-top: 50px; }
+        .checkout-card { border-radius: 15px; border: none; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+        .btn-checkout { background: #e67e22; color: white; border: none; padding: 12px; width: 100%; border-radius: 8px; font-weight: bold; }
+        .btn-checkout:hover { background: #d35400; }
+    </style>
+</head>
+<body>
+     <!-- ============================================ -->
+
+
+    <!-- Satar fo Nav Bar -->
+
+    <nav class="navbar navbar-expand-lg fixed-top ">
+        <div class="container">
+          <a class="navbar-brand najiha" style="font-size: 3rem; "  href="./Home.html">Najiha</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"><i class="fas fa-hamburder"></i></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent" style="--bs-scroll-height: 100px;">
+            <ul class="navbar-nav m-auto my-2 my-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" href="./Home.html">HOME</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">TRENDING</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#store" >
+                  Store
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Organic</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#contact-section">Contact US</a>
+              </li>
+            </ul>
+            <form class="d-flex" role="search">
+              <input class="px-2 search" type="search" placeholder="Search" aria-label="Search"/>
+              <button class="btn0" type="submit">Search</button>
+            </form>
+          </div>
+        </div>
+      </nav>
+
+      <!-- End of Nav Bar Section  -->
+      <!-- =========================================================== -->
+
+<div class="container checkout-container">
+    <div class="row g-5">
+        <div class="col-md-7">
+            <h4 class="mb-4 fw-bold">Payment Method</h4>
+            <div class="card card-custom p-4">
+                <form>
+                    <div class="my-3">
+                        <div class="form-check border p-3 rounded mb-3">
+                            <input id="credit" name="paymentMethod" type="radio" class="form-check-input" checked required>
+                            <label class="form-check-label d-flex justify-content-between w-100" for="credit">
+                                <span>Credit / Debit Card</span>
+                                <span>💳</span>
+                            </label>
+                        </div>
+                        <div class="form-check border p-3 rounded mb-3">
+                            <input id="paypal" name="paymentMethod" type="radio" class="form-check-input" required>
+                            <label class="form-check-label d-flex justify-content-between w-100" for="paypal">
+                                <span>PayPal / Online Wallet</span>
+                                <span>🅿️</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12 mb-3">
+                            <label class="form-label small">Name on Card</label>
+                            <input type="text" class="form-control" placeholder="John Doe">
+                        </div>
+                        <div class="col-md-12 mb-3">
+                            <label class="form-label small">Card Number</label>
+                            <input type="text" class="form-control" placeholder="0000 0000 0000 0000">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label small">Expiration</label>
+                            <input type="text" class="form-control" placeholder="MM/YY">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label small">CVV</label>
+                            <input type="text" class="form-control" placeholder="123">
+                        </div>
+                    </div>
+
+                    <hr class="my-4">
+                    <button class="btn btn-pay" type="submit">Complete Payment</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="col-md-5">
+            <h4 class="d-flex justify-content-between align-items-center mb-4">
+                <span class="fw-bold">Your Cart</span>
+                <span class="badge bg-primary rounded-pill">1</span>
+            </h4>
+            <ul class="list-group mb-3 card-custom overflow-hidden">
+                <li class="list-group-item d-flex justify-content-between lh-sm p-3">
+                    <div>
+                        <h6 class="my-0">Product Name</h6>
+                        <small class="text-muted">High Quality Item</small>
+                    </div>
+                    <span class="text-muted">$129.00</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between p-3">
+                    <span>Shipping</span>
+                    <strong>$5.00</strong>
+                </li>
+                <li class="list-group-item d-flex justify-content-between p-3 bg-light">
+                    <span class="text-success">Total (USD)</span>
+                    <strong class="text-success">$134.00</strong>
+                </li>
+            </ul>
+
+            <div class="card p-2 card-custom">
+                <div class="input-group">
+                    <input type="text" class="form-control border-0" placeholder="Promo code">
+                    <button type="submit" class="btn btn-secondary">Redeem</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+ <!-- Start of Footer   -->
+ <section class="news ">
+  <div class="container ">
+    <div class="row justify-content-center">
+      <div class="col-lg-9  mt-3 text-center">
+        <h1>Join Our Secret Society</h1>
+        <input type="text" class="px-3" placeholder="Entery Your Email ">
+        <button class="btn2 ">Submit</button>
+      </div>
+    </div>
+    <div class="row mt-4  justify-content-center">
+      <div class="col-lg-11">
+
+        <div class="row footer1">
+          <div class="col-lg-3 mt-3">
+            <h5 class="pb-3">CUSTOMER CARE</h5>
+            <P>Regular</P>
+            <P>On Time</P>
+            <P>Always Care</P>
+          </div>
+          <div class="col-lg-3 mt-3">
+            <h5 class="pb-3">CUSTOMER CARE</h5>
+            <P>Regular</P>
+            <P>On Time</P>
+            <P>Always Care</P>
+          </div>
+          <div class="col-lg-3 mt-3">
+            <h5 class="pb-3">CUSTOMER CARE</h5>
+            <P>Regular</P>
+            <P>On Time</P>
+            <P>Always Care</P>
+          </div>
+          <div class="col-lg-3 mt-3">
+            <h5 class="pb-3">CUSTOMER CARE</h5>
+            <span><a href="https://www.tiktok.com/@najiha_diy_craft?_r=1&_t=ZS-967nTbamrQ1"><i class="fa-brands fa-tiktok icon" style="color:#000;"></i></a></span>
+            <span> <a href="instagram.com/najiha_closet?igsh=MTZ5M3piMGZ0aGMxYQ=="><i class="fa-brands fa-instagram icon" style="color:#e4405f;" ></i></a> </span>
+            <span><a href=""><i class="fa-brands fa-twitter icon" style="color:#1da1f2;"></i></a></span>
+            <span><a href="https://youtube.com/@craft884?si=dYLS2yNBeOhIKNRB"><i class="fa-brands fa-youtube icon" style="color:#ff0000;"></i></a></span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr>
+    <p class="text-center">Copyright @2026 All rights | This Template is made with by Najiha</p>
+  </div>
+  
+  <!-- Toggle Button -->
+  <div class="toggle-btn" onclick="toggleMenu()">
+    <i class="fa-solid fa-arrow-right"></i>
+                </div>
+  
+               <div class="social-bar" id="socialBar">
+  
+                <a href="https://wa.me/923012292471" target="_blank" class="whatsapp">
+                  <i class="fa-brands fa-whatsapp"></i>
+                </a>
+  
+                <a href="https://www.facebook.com" target="_blank" class="facebook">
+                  <i class="fa-brands fa-facebook"></i>
+                </a>
+  
+                <a href="https://www.instagram.com" target="_blank" class="instagram">
+                  <i class="fa-brands fa-instagram"></i>
+                </a>
+  
+                <a href="https://youtube.com/@craft884?si=dYLS2yNBeOhIKNRB" target="_blank" class="youtube">
+                  <i class="fa-brands fa-youtube"></i>
+                </a>
+  
+                <a href="https://www.tiktok.com/@najiha_diy_craft?_r=1&_t=ZS-967nTbamrQ1" target="_blank" class="tiktok">
+                  <i class="fa-brands fa-tiktok"></i>
+                </a>
+  
+              </div>
+  </section> 
+
+<!-- End of Footer  -->
+   <!-- ============================================ -->
+
+   <script>
+    function toggleMenu() {
+      document.getElementById("socialBar").classList.toggle("active");
+      document.querySelector(".toggle-btn").classList.toggle("active");
+    }
+    </script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
