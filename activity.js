@@ -58,7 +58,7 @@ const NajihaActivity = (() => {
 
     const authHtml = user
       ? `<div style="display:flex;align-items:center;gap:10px;">
-           <span style="font-size:13px;color:var(--ink-soft);">👤 ${user.name}</span>
+           <span style="font-size:8px;color:var(--ink-soft);">👤 ${user.name}</span>
            <button class="btn-pill btn-pill-outline" id="nav-logout">Logout</button>
          </div>`
       : `<a href="index.html" class="btn-pill btn-pill-rose">Sign In</a>`;
