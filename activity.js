@@ -70,7 +70,7 @@ const NajihaActivity = (() => {
         <div class="nav-actions">
           <input class="nav-search" type="search" placeholder="Search products…" id="nav-search-input" />
           <a href="payment.html" class="btn-pill btn-pill-outline" id="nav-cart-btn">
-            🛍 Cart <span id="nav-cart-count" style="background:var(--rose);color:#fff;border-radius:99px;font-size:11px;margin-left:2px;">${cartCount || ''}</span>
+            Cart <span id="nav-cart-count" style="background:var(--rose);color:#fff;border-radius:99px;font-size:11px;margin-left:2px;">${cartCount || ''}</span>
           </a>
           ${authHtml}
           <button class="nav-hamburger" id="nav-ham" aria-label="Menu">☰</button>
