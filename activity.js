@@ -61,7 +61,7 @@ const NajihaActivity = (() => {
            <span style="font-size:8px;color:var(--ink-soft);">👤 ${user.name}</span>
            <button class="btn-pill btn-pill-outline" id="nav-logout">Logout</button>
          </div>`
-      : `<a href="index.html" class="btn-pill btn-pill-rose">Sign In</a>`;
+      : `<a href="Login.html" class="btn-pill btn-pill-rose">Sign In</a>`;
 
     mount.innerHTML = `
       <nav class="nav-shell" id="main-nav">
@@ -69,8 +69,13 @@ const NajihaActivity = (() => {
         <ul class="nav-links">${links}</ul>
         <div class="nav-actions">
           <input class="nav-search" type="search" placeholder="Search products…" id="nav-search-input" />
+<<<<<<< HEAD
+          <a href="Cart.html" class="btn-pill btn-pill-outline" id="nav-cart-btn">
+            🛍 Cart <span id="nav-cart-count" style="background:var(--rose);color:#fff;border-radius:99px;padding:1px 7px;font-size:11px;margin-left:2px;">${cartCount || ''}</span>
+=======
           <a href="payment.html" class="btn-pill btn-pill-outline" id="nav-cart-btn">
            🛍 Cart <span id="nav-cart-count" style="background:var(--rose);color:#fff;border-radius:99px;font-size:11px;margin-left:2px;">${cartCount || ''}</span>
+>>>>>>> 0382526683cab389eecc663b1ab68bc3338af09f
           </a>
           ${authHtml}
           <button class="nav-hamburger" id="nav-ham" aria-label="Menu">☰</button>
@@ -78,7 +83,7 @@ const NajihaActivity = (() => {
       </nav>
       <div class="nav-mobile-drawer" id="nav-drawer">
         ${NajihaModel.NAV_LINKS.map(l => `<a href="${l.href}">${l.label}</a>`).join('')}
-        ${user ? `<a href="#" id="drawer-logout">Logout (${user.name})</a>` : '<a href="index.html">Sign In</a>'}
+        ${user ? `<a href="#" id="drawer-logout">Logout (${user.name})</a>` : '<a href="Login.html">Sign In</a>'}
       </div>
     `;
 
