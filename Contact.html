@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Najiha — Contact Us</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link rel="stylesheet" href="najiha.css" />
+
+  <style>
+    .contact-hero {
+      padding: 140px 5% 60px;
+      text-align: center;
+      background: var(--mist);
+    }
+    .contact-hero h1 { font-family: var(--font-display); font-size: clamp(34px,5vw,56px); margin: 10px 0 12px; }
+    .contact-hero p  { color: var(--gray-mid); max-width: 520px; margin: 0 auto; font-size: 15px; line-height: 1.7; }
+
+    .contact-cards {
+      max-width: 1100px; margin: 0 auto;
+      padding: var(--section-y) var(--pad-x) 0;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+    .contact-card {
+      background: var(--white);
+      border-radius: var(--r-lg);
+      padding: 2rem 1.5rem;
+      text-align: center;
+      box-shadow: var(--shadow-sm);
+      transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease);
+    }
+    .contact-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); }
+    .contact-card .ic {
+      width: 52px; height: 52px; margin: 0 auto 1rem;
+      background: var(--rose-light); color: var(--rose);
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      font-size: 20px;
+    }
+    .contact-card h4 { font-family: var(--font-display); font-size: 19px; margin-bottom: 6px; }
+    .contact-card p  { font-size: 13px; color: var(--gray-mid); line-height: 1.7; }
+
+    .map-wrap { max-width: 1100px; margin: var(--section-y) auto 0; padding: 0 var(--pad-x); }
+    .map-frame { border-radius: var(--r-lg); overflow: hidden; box-shadow: var(--shadow-sm); }
+    .map-frame iframe { width: 100%; height: 340px; border: none; display: block; }
+
+    @media (max-width: 900px) { .contact-cards { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+
+  <div id="nav-mount"></div>
+
+  <section class="contact-hero">
+    <span class="label">Reach Out</span>
+    <h1>Contact Us</h1>
+    <p>Questions about an order, sizing, or just want to say hi? We're always happy to hear from you.</p>
+  </section>
+
+  <div class="contact-cards" id="contact-cards"></div>
+
+  <div class="map-wrap">
+    <div class="map-frame">
+      <iframe
+        src="https://www.google.com/maps?q=Karachi,Pakistan&output=embed"
+        loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+  </div>
+
+  <div id="contact-mount"></div>
+  <div id="footer-mount"></div>
+
+  <script src="model.js"></script>
+  <script src="activity.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      NajihaActivity.mountNav('Contact');
+      NajihaActivity.mountContact('contact-mount');
+      NajihaActivity.mountFooter();
+      NajihaActivity.mountSocialFloat();
+
+      const info = NajihaModel.CONTACT_INFO;
+      document.getElementById('contact-cards').innerHTML = `
+        <div class="contact-card fade-up">
+          <div class="ic"><i class="fa-solid fa-location-dot"></i></div>
+          <h4>Visit Us</h4>
+          <p>${info.address}</p>
+        </div>
+        <div class="contact-card fade-up delay-1">
+          <div class="ic"><i class="fa-solid fa-phone"></i></div>
+          <h4>Call Us</h4>
+          <p>${info.phone}</p>
+        </div>
+        <div class="contact-card fade-up delay-2">
+          <div class="ic"><i class="fa-solid fa-envelope"></i></div>
+          <h4>Email Us</h4>
+          <p>${info.email}</p>
+        </div>
+      `;
+    });
+  </script>
+
+</body>
+</html>

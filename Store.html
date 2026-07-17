@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Najiha — Store</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link rel="stylesheet" href="najiha.css" />
+
+  <style>
+    .store-hero {
+      padding: 128px 5% 48px;
+      background: linear-gradient(135deg, #1c1c1e 55%, #2d1a2e);
+      text-align: center;
+    }
+    .store-hero h1 { font-family: var(--font-display); font-size: clamp(34px,5vw,56px); color: var(--white); margin: 10px 0 12px; }
+    .store-hero p  { color: rgba(255,255,255,0.6); max-width: 520px; margin: 0 auto; font-size: 15px; line-height: 1.7; }
+
+    .store-toolbar {
+      max-width: 1200px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 1rem; flex-wrap: wrap;
+      margin-bottom: 1.5rem;
+    }
+    .store-count { font-size: 13px; color: var(--gray-mid); }
+    .store-sort {
+      padding: 9px 14px;
+      border: 1.5px solid var(--border);
+      border-radius: var(--r-pill);
+      background: var(--white);
+      font-size: 13px;
+      font-family: var(--font-body);
+      color: var(--ink);
+      outline: none;
+      cursor: pointer;
+    }
+    .store-sort:focus { border-color: var(--rose); }
+
+    @media (max-width: 640px) {
+      .store-hero { padding: 100px 5% 36px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div id="nav-mount"></div>
+
+  <section class="store-hero">
+    <span class="label" style="color:var(--rose-light);">The Collection</span>
+    <h1>Explore Our Store</h1>
+    <p>Every piece designed for softness, movement, and everyday little-one magic. Filter by category or search to find your favorite.</p>
+  </section>
+
+  <section class="section">
+    <div class="store-toolbar" style="max-width:1200px;">
+      <span class="store-count" id="store-count"></span>
+      <select class="store-sort" id="store-sort">
+        <option value="default">Sort: Featured</option>
+        <option value="price-asc">Price: Low to High</option>
+        <option value="price-desc">Price: High to Low</option>
+        <option value="rating">Top Rated</option>
+        <option value="new">New Arrivals</option>
+      </select>
+    </div>
+    <div style="max-width:1200px;margin:0 auto;">
+      <div id="products-mount"></div>
+    </div>
+  </section>
+
+  <div id="newsletter-mount"></div>
+  <div id="footer-mount"></div>
+
+  <script src="model.js"></script>
+  <script src="activity.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      NajihaActivity.mountNav('Store');
+      NajihaActivity.mountNewsletter();
+      NajihaActivity.mountFooter();
+      NajihaActivity.mountSocialFloat();
+      NajihaActivity.mountProductGrid('products-mount', 'all');
+
+      function updateCount() {
+        const count = document.querySelectorAll('#products-grid .product-card').length;
+        document.getElementById('store-count').textContent = `${count} product${count === 1 ? '' : 's'}`;
+      }
+      updateCount();
+
+      // Re-count whenever the grid changes (category filter / search)
+      const grid = document.getElementById('products-mount');
+      new MutationObserver(updateCount).observe(grid, { childList: true, subtree: true });
+
+      // Sorting (client-side re-render of currently visible cards)
+      document.getElementById('store-sort').addEventListener('change', e => {
+        const active = document.querySelector('.cat-pill.active');
+        const cat = active ? active.dataset.cat : 'all';
+        let items = NajihaModel.Products.byCategory(cat);
+
+        switch (e.target.value) {
+          case 'price-asc':  items = [...items].sort((a,b) => a.price - b.price); break;
+          case 'price-desc': items = [...items].sort((a,b) => b.price - a.price); break;
+          case 'rating':     items = [...items].sort((a,b) => b.rating - a.rating); break;
+          case 'new':        items = [...items].filter(p => p.badge === 'new').concat(items.filter(p => p.badge !== 'new')); break;
+        }
+
+        const productsGrid = document.getElementById('products-grid');
+        productsGrid.innerHTML = items.map(NajihaActivity.renderProductCard).join('');
+        NajihaActivity.wireProductCards(productsGrid);
+      });
+    });
+  </script>
+
+</body>
+</html>
