@@ -43,56 +43,9 @@ const NajihaModel = (() => {
 
   const NAV_LINKS = [
     { label: "Home",    href: "Home.html" },
-    { label: "Store",   href: "Store.html" },
-    { label: "Gallery", href: "Gallery.html" },
-    { label: "About",   href: "About.html" },
-    { label: "Contact", href: "Contact.html" },
-  ];
-
-  /* ───────────────────────────────────────────────────────
-   * ABOUT PAGE CONTENT
-   * ─────────────────────────────────────────────────────── */
-  const ABOUT_CONTENT = {
-    hero: {
-      label: "Our Story",
-      title: "Made with Love, Worn with Joy",
-      desc: "Najiha began as a small dream in Karachi — to dress children in pieces as soft, joyful, and full of character as childhood itself.",
-    },
-    story: [
-      "Najiha was founded on a simple belief: that children's clothing should be as thoughtfully made as anything in a grown-up's wardrobe. What started as a small home-based atelier stitching frocks for family and friends has grown into a boutique loved by parents who want a little more heart in what their children wear.",
-      "Every piece we create passes through hands that care — from selecting breathable, skin-safe fabrics to finishing every hem with the kind of attention usually reserved for heirlooms. We believe childhood is fleeting, and the clothes worn during it should feel just as special.",
-    ],
-    values: [
-      { icon: "🧵", title: "Handcrafted Quality", desc: "Every stitch is checked by hand before a piece ever reaches your doorstep." },
-      { icon: "🌿", title: "Gentle Fabrics", desc: "Breathable cottons and muslins chosen for delicate, sensitive skin." },
-      { icon: "🎀", title: "Timeless Design", desc: "Styles that outlast trends — pieces you'll want to keep in the memory box." },
-      { icon: "🤍", title: "Made with Care", desc: "Small-batch production means every order gets real attention." },
-    ],
-    stats: [
-      { n: "5000+", l: "Happy Families" },
-      { n: "15+",   l: "Signature Collections" },
-      { n: "4.8★",  l: "Average Rating" },
-      { n: "100%",  l: "Skin-Safe Fabrics" },
-    ],
-  };
-
-  /* ───────────────────────────────────────────────────────
-   * GALLERY CONTENT — lifestyle & product imagery
-   * ─────────────────────────────────────────────────────── */
-  const GALLERY_ITEMS = [
-    { img: "./rambo/2.jpg",  caption: "Mustard Yellow Ruffled Set",          tag: "sets" },
-    { img: "./rambo/3.jpg",  caption: "Party Dress with Oversized Bow",      tag: "dresses" },
-    { img: "./rambo/4.jpg",  caption: "Pastel Blue Puff-Sleeve Shirt Dress", tag: "dresses" },
-    { img: "./rambo/5.jpg",  caption: "Toddler Two-Piece Summer Set",        tag: "sets" },
-    { img: "./rambo/6.jpg",  caption: "Garden Whimsy Embroidered Dress",     tag: "dresses" },
-    { img: "./rambo/7.jpg",  caption: "White Heirloom Embroidered Dress",    tag: "dresses" },
-    { img: "./rambo/8.jpg",  caption: "Lavender & White Scalloped Dress",    tag: "dresses" },
-    { img: "./rambo/9.jpg",  caption: "Sweetheart Ruffle Muslin Dress",      tag: "dresses" },
-    { img: "./rambo/10.jpg", caption: "Tiny Hearts Smocked Sundress & Hat",  tag: "sets" },
-    { img: "./rambo/11.jpg", caption: "Mustard Yellow Ruffled Romper",       tag: "rompers" },
-    { img: "./rambo/12.jpg", caption: "Sweet Summer Hearts & Floral Dress",  tag: "dresses" },
-    { img: "./rambo/Newborn.webp", caption: "Australian Baby Frocks",       tag: "dresses" },
-    { img: "./rambo/product.webp", caption: "Indian Baby Frocks",           tag: "dresses" },
+    { label: "Store",   href: "#store" },
+    { label: "Organic", href: "#" },
+    { label: "Contact", href: "#contact-section" },
   ];
 
   const SOCIAL_LINKS = [
@@ -229,8 +182,6 @@ const NajihaModel = (() => {
     NAV_LINKS,
     SOCIAL_LINKS,
     CONTACT_INFO,
-    ABOUT_CONTENT,
-    GALLERY_ITEMS,
   };
 
 })();
