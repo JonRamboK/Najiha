@@ -428,19 +428,19 @@ function render() {
   mount.innerHTML = `
 
     <!-- Announcement -->
-    <div class="announce-bar">
-      <div class="announce-inner">
-        <span>
-          STYLE WITH ELEGANCE
-        </span>
+    // <div class="announce-bar">
+    //   <div class="announce-inner">
+    //     <span>
+    //       STYLE WITH ELEGANCE
+    //     </span>
 
-        <span class="announce-separator">•</span>
+    //     <span class="announce-separator">•</span>
 
-        <span>
-          Free delivery in Karachi on orders above Rs. 4,000
-        </span>
-      </div>
-    </div>
+    //     <span>
+    //       Free delivery in Karachi on orders above Rs. 4,000
+    //     </span>
+    //   </div>
+    // </div>
 
     <!-- Navbar -->
     <nav class="navbar">

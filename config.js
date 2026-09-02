@@ -8,6 +8,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/12.16.0/fireba
   const firebaseConfig = {
     apiKey: "AIzaSyBfWC26Nvc3LZji_io5747y94vnPuWIW2o",
     authDomain: "najiha-2c3ca.firebaseapp.com",
+    databaseURL: "https://najiha-2c3ca-default-rtdb.asia-southeast1.firebasedatabase.app",
     projectId: "najiha-2c3ca",
     storageBucket: "najiha-2c3ca.firebasestorage.app",
     messagingSenderId: "354444531724",
