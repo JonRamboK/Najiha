@@ -1,0 +1,55 @@
+rules_version = '2';
+
+// ============================================================
+// Najiha Closet — Firebase Storage Security Rules
+//
+// HOW TO APPLY:
+// Firebase Console → najiha-2c3ca → Storage → Rules tab → paste → Publish.
+// (If Storage hasn't been set up yet: Console → Storage → Get started →
+// production mode → same region as Firestore.)
+//
+// The site doesn't upload files yet (js/firebase-core.js exports `storage`
+// but no page calls uploadBytes()). These rules just make sure the bucket
+// isn't left wide open by the Firebase default while it's unused, and are
+// ready for the day you add product-image or profile-photo uploads:
+//   - product images: public to read, admin-only to write
+//   - user uploads (e.g. a future profile photo): owner-only read/write
+// ============================================================
+
+function isSignedIn() {
+  return request.auth != null;
+}
+
+function isAdmin() {
+  return isSignedIn() &&
+    request.auth.token.email in [
+      'admin@najihacloset.com',
+      'owner@najihacloset.com',
+      'ali1@gmail.com'
+    ];
+}
+
+service firebase.storage {
+  match /b/{bucket}/o {
+
+    // Product photos — publicly viewable, only admins can upload/replace/delete.
+    match /products/{allPaths=**} {
+      allow read: if true;
+      allow write: if isAdmin() && request.resource.size < 5 * 1024 * 1024
+                    && request.resource.contentType.matches('image/.*');
+    }
+
+    // Per-user uploads (e.g. a future avatar/profile photo).
+    match /users/{uid}/{allPaths=**} {
+      allow read: if true;
+      allow write: if isSignedIn() && request.auth.uid == uid
+                    && request.resource.size < 5 * 1024 * 1024
+                    && request.resource.contentType.matches('image/.*');
+    }
+
+    // Everything else stays locked.
+    match /{allPaths=**} {
+      allow read, write: if false;
+    }
+  }
+}

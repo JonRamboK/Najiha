@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Create your Najiha Closet account">
+    <title>Create Account | Najiha Closet</title>
+
+    <link rel="icon" href="assets/logo.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,500;0,600;0,700;1,500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@25.3.1/build/css/intlTelInput.css">
+    <link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/responsive.css">
+<link rel="stylesheet" href="css/extra.css">
+</head>
+<body>
+
+<script src="js/loader.js"></script>
+
+<div class="auth-page">
+    <div class="auth-container register-container">
+
+        <section class="auth-brand">
+            <div class="brand-logo"><img src="assets/logo.png" alt="Najiha Closet"></div>
+            <div class="auth-photo-collage">
+                <div><img src="https://picsum.photos/seed/nc-reg-1/200/200" alt=""></div>
+                <div><img src="https://picsum.photos/seed/nc-reg-2/200/220" alt=""></div>
+                <div><img src="https://picsum.photos/seed/nc-reg-3/200/200" alt=""></div>
+            </div>
+            <h1>Join the Najiha Closet family</h1>
+            <p>Create your account and get first access to new arrivals, sales and easy WhatsApp checkout.</p>
+            <div class="brand-features">
+                <div><i class="fa-solid fa-circle-check"></i><span>Quick, one-page registration</span></div>
+                <div><i class="fa-solid fa-database"></i><span>Secure Firebase account</span></div>
+                <div><i class="fa-solid fa-globe"></i><span>Works with any country's phone number</span></div>
+            </div>
+            <div class="brand-stats">
+                <div class="brand-stat"><strong>500+</strong><span>Happy Families</span></div>
+                <div class="brand-stat"><strong>4.8★</strong><span>Average Rating</span></div>
+                <div class="brand-stat"><strong>100+</strong><span>Products</span></div>
+            </div>
+        </section>
+
+        <!-- <section class="auth-card register-card">
+            <div class="auth-heading">
+                <span class="small-title"><i class="fa-solid fa-star"></i> CREATE ACCOUNT</span>
+                <h2>Get started</h2>
+                <p>Fill in the information below — it only takes a minute.</p>
+            </div>
+
+            <div id="message" class="message"></div>
+
+            <form id="registerForm">
+                <div class="form-section-title"><i class="fa-solid fa-user"></i><span>Personal details</span></div>
+                <div class="two-columns">
+                    <div class="input-group">
+                        <label for="firstName">First Name</label>
+                        <div class="input-wrapper"><i class="fa-regular fa-user"></i><input type="text" id="firstName" placeholder="First name" autocomplete="given-name" required></div>
+                    </div>
+                    <div class="input-group">
+                        <label for="lastName">Last Name</label>
+                        <div class="input-wrapper"><i class="fa-regular fa-user"></i><input type="text" id="lastName" placeholder="Last name" autocomplete="family-name" required></div>
+                    </div>
+                </div>
+                <div class="two-columns">
+                    <div class="input-group">
+                        <label for="dateOfBirth">Date of Birth</label>
+                        <div class="input-wrapper"><i class="fa-regular fa-calendar"></i><input type="date" id="dateOfBirth" required></div>
+                    </div>
+                    <div class="input-group">
+                        <label for="gender">Gender</label>
+                        <div class="input-wrapper">
+                            <i class="fa-solid fa-venus-mars"></i>
+                            <select id="gender" required>
+                                <option value="">Select gender</option>
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-section-title"><i class="fa-solid fa-address-card"></i><span>Contact info</span></div>
+                <div class="input-group">
+                    <label for="username">Username</label>
+                    <div class="input-wrapper"><i class="fa-solid fa-at"></i><input type="text" id="username" placeholder="username" minlength="3" maxlength="30" required></div>
+                    <small class="input-help">3–30 characters. Letters, numbers and underscore.</small>
+                </div>
+                <div class="input-group">
+                    <label for="registerEmail">Gmail Address</label>
+                    <div class="input-wrapper"><i class="fa-regular fa-envelope"></i><input type="email" id="registerEmail" placeholder="example@gmail.com" autocomplete="email" required></div>
+                    <small class="input-help">Only Gmail addresses are accepted.</small>
+                </div>
+                <div class="input-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" placeholder="Enter phone number" autocomplete="tel" required>
+                    <small id="phoneHelp" class="input-help">Select your country and enter your number.</small>
+                </div>
+
+                <div class="form-section-title"><i class="fa-solid fa-shield-halved"></i><span>Security</span></div>
+                <div class="input-group">
+                    <label for="registerPassword">Strong Password</label>
+                    <div class="input-wrapper">
+                        <i class="fa-solid fa-lock"></i>
+                        <input type="password" id="registerPassword" placeholder="Create strong password" autocomplete="new-password" required>
+                        <button type="button" class="password-toggle" data-target="registerPassword"><i class="fa-regular fa-eye"></i></button>
+                    </div>
+
+                    <div class="password-strength">
+                        <div class="strength-bar"><span id="strengthProgress"></span></div>
+                        <span id="strengthText">Enter password</span>
+                    </div>
+
+                    <ul class="password-rules">
+                        <li id="ruleLength"><i class="fa-solid fa-circle"></i>8+ characters</li>
+                        <li id="ruleUpper"><i class="fa-solid fa-circle"></i>One uppercase letter</li>
+                        <li id="ruleLower"><i class="fa-solid fa-circle"></i>One lowercase letter</li>
+                        <li id="ruleNumber"><i class="fa-solid fa-circle"></i>One number</li>
+                        <li id="ruleSpecial"><i class="fa-solid fa-circle"></i>One special character</li>
+                    </ul>
+                </div>
+
+                <div class="input-group">
+                    <label for="confirmPassword">Confirm Password</label>
+                    <div class="input-wrapper">
+                        <i class="fa-solid fa-lock"></i>
+                        <input type="password" id="confirmPassword" placeholder="Repeat your password" autocomplete="new-password" required>
+                        <button type="button" class="password-toggle" data-target="confirmPassword"><i class="fa-regular fa-eye"></i></button>
+                    </div>
+                </div>
+
+                <label class="terms">
+                    <input type="checkbox" id="terms" required>
+                    <span>I agree to the <a href="#">Terms &amp; Conditions</a> and <a href="#">Privacy Policy</a>.</span>
+                </label>
+
+                <button type="submit" class="main-btn" id="registerBtn"><span>Create Account</span><i class="fa-solid fa-user-plus"></i></button>
+            </form>
+
+            <div class="divider"><span>OR REGISTER WITH</span></div>
+
+            <div class="social-buttons">
+                <button type="button" class="social-btn google" id="googleRegister"><i class="fa-brands fa-google"></i><span>Google</span></button>
+                <button type="button" class="social-btn facebook" id="facebookRegister"><i class="fa-brands fa-facebook-f"></i><span>Facebook</span></button>
+                <button type="button" class="social-btn instagram" id="instagramRegister"><i class="fa-brands fa-instagram"></i><span>Instagram</span></button>
+            </div>
+
+            <p class="switch-auth">Already have an account? <a href="login.html">Login</a></p>
+        </section> -->
+
+        <section class="auth-card register-card">
+
+            <div class="auth-heading">
+                <span class="small-title">
+                    <i class="fa-solid fa-star"></i>
+                    CREATE ACCOUNT
+                </span>
+        
+                <h2>Get started</h2>
+                <p>Fill in the information below — it only takes a minute.</p>
+            </div>
+        
+            <div id="message" class="message"></div>
+        
+            <form id="registerForm">
+        
+                <!-- PERSONAL DETAILS -->
+                <div class="form-section-title">
+                    <i class="fa-solid fa-user"></i>
+                    <span>Personal details</span>
+                </div>
+        
+                <div class="two-columns">
+        
+                    <div class="input-group">
+                        <label for="firstName">First Name</label>
+        
+                        <div class="input-wrapper">
+                            <i class="fa-regular fa-user"></i>
+                            <input
+                                type="text"
+                                id="firstName"
+                                placeholder="First name"
+                                autocomplete="given-name"
+                                required
+                            >
+                        </div>
+                    </div>
+        
+                    <div class="input-group">
+                        <label for="lastName">Last Name</label>
+        
+                        <div class="input-wrapper">
+                            <i class="fa-regular fa-user"></i>
+                            <input
+                                type="text"
+                                id="lastName"
+                                placeholder="Last name"
+                                autocomplete="family-name"
+                                required
+                            >
+                        </div>
+                    </div>
+        
+                </div>
+        
+                <div class="two-columns">
+        
+                    <div class="input-group">
+                        <label for="dateOfBirth">Date of Birth</label>
+        
+                        <div class="input-wrapper">
+                            <i class="fa-regular fa-calendar"></i>
+                            <input
+                                type="date"
+                                id="dateOfBirth"
+                                required
+                            >
+                        </div>
+                    </div>
+        
+                    <div class="input-group">
+                        <label for="gender">Gender</label>
+        
+                        <div class="input-wrapper">
+                            <i class="fa-solid fa-venus-mars"></i>
+        
+                            <select id="gender" required>
+                                <option value="">Select gender</option>
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                    </div>
+        
+                </div>
+        
+        
+                <!-- CONTACT INFORMATION -->
+                <div class="form-section-title">
+                    <i class="fa-solid fa-address-card"></i>
+                    <span>Contact info</span>
+                </div>
+        
+                <div class="input-group">
+                    <label for="username">Username</label>
+        
+                    <div class="input-wrapper">
+                        <i class="fa-solid fa-at"></i>
+        
+                        <input
+                            type="text"
+                            id="username"
+                            placeholder="username"
+                            minlength="3"
+                            maxlength="30"
+                            autocomplete="username"
+                            required
+                        >
+                    </div>
+        
+                    <small class="input-help">
+                        3–30 characters. Letters, numbers and underscore.
+                    </small>
+                </div>
+        
+        
+                <div class="input-group">
+                    <label for="registerEmail">Gmail Address</label>
+        
+                    <div class="input-wrapper">
+                        <i class="fa-regular fa-envelope"></i>
+        
+                        <input
+                            type="email"
+                            id="registerEmail"
+                            placeholder="example@gmail.com"
+                            autocomplete="email"
+                            required
+                        >
+                    </div>
+        
+                    <small class="input-help">
+                        Only Gmail addresses are accepted.
+                    </small>
+                </div>
+        
+        
+                <div class="input-group">
+                    <label for="phone">Phone Number</label>
+        
+                    <div class="phone-wrapper">
+                        <input
+                            type="tel"
+                            id="phone"
+                            placeholder="Enter phone number"
+                            autocomplete="tel"
+                            required
+                        >
+                    </div>
+        
+                    <small id="phoneHelp" class="input-help">
+                        Select your country and enter your number.
+                    </small>
+                </div>
+        
+        
+                <!-- SECURITY -->
+                <div class="form-section-title">
+                    <i class="fa-solid fa-shield-halved"></i>
+                    <span>Security</span>
+                </div>
+        
+        
+                <div class="input-group">
+        
+                    <label for="registerPassword">
+                        Strong Password
+                    </label>
+        
+                    <div class="input-wrapper password-wrapper">
+        
+                        <i class="fa-solid fa-lock"></i>
+        
+                        <input
+                            type="password"
+                            id="registerPassword"
+                            placeholder="Create strong password"
+                            autocomplete="new-password"
+                            required
+                        >
+        
+                        <button
+                            type="button"
+                            class="password-toggle"
+                            data-target="registerPassword"
+                            aria-label="Show password"
+                        >
+                            <i class="fa-regular fa-eye"></i>
+                        </button>
+        
+                    </div>
+        
+        
+                    <div class="password-strength">
+        
+                        <div class="strength-bar">
+                            <span id="strengthProgress"></span>
+                        </div>
+        
+                        <span id="strengthText">
+                            Enter password
+                        </span>
+        
+                    </div>
+        
+        
+                    <ul class="password-rules">
+        
+                        <li id="ruleLength">
+                            <i class="fa-solid fa-circle"></i>
+                            8+ characters
+                        </li>
+        
+                        <li id="ruleUpper">
+                            <i class="fa-solid fa-circle"></i>
+                            One uppercase letter
+                        </li>
+        
+                        <li id="ruleLower">
+                            <i class="fa-solid fa-circle"></i>
+                            One lowercase letter
+                        </li>
+        
+                        <li id="ruleNumber">
+                            <i class="fa-solid fa-circle"></i>
+                            One number
+                        </li>
+        
+                        <li id="ruleSpecial">
+                            <i class="fa-solid fa-circle"></i>
+                            One special character
+                        </li>
+        
+                    </ul>
+        
+                </div>
+        
+        
+                <!-- CONFIRM PASSWORD -->
+                <div class="input-group">
+        
+                    <label for="confirmPassword">
+                        Confirm Password
+                    </label>
+        
+                    <div class="input-wrapper password-wrapper">
+        
+                        <i class="fa-solid fa-lock"></i>
+        
+                        <input
+                            type="password"
+                            id="confirmPassword"
+                            placeholder="Repeat your password"
+                            autocomplete="new-password"
+                            required
+                        >
+        
+                        <button
+                            type="button"
+                            class="password-toggle"
+                            data-target="confirmPassword"
+                            aria-label="Show password"
+                        >
+                            <i class="fa-regular fa-eye"></i>
+                        </button>
+        
+                    </div>
+        
+                </div>
+        
+        
+                <!-- TERMS -->
+                <label class="terms">
+        
+                    <input
+                        type="checkbox"
+                        id="terms"
+                        required
+                    >
+        
+                    <span>
+                        I agree to the
+                        <a href="#">Terms &amp; Conditions</a>
+                        and
+                        <a href="#">Privacy Policy</a>.
+                    </span>
+        
+                </label>
+        
+        
+                <!-- REGISTER BUTTON -->
+                <button
+                    type="submit"
+                    class="main-btn"
+                    id="registerBtn"
+                >
+                    <span>Create Account</span>
+                    <i class="fa-solid fa-user-plus"></i>
+                </button>
+        
+            </form>
+        
+        
+            <!-- SOCIAL REGISTER -->
+            <div class="divider">
+                <span>OR REGISTER WITH</span>
+            </div>
+        
+            <div class="social-buttons">
+        
+                <button
+                    type="button"
+                    class="social-btn google"
+                    id="googleRegister"
+                >
+                    <i class="fa-brands fa-google"></i>
+                    <span>Google</span>
+                </button>
+        
+                <button
+                    type="button"
+                    class="social-btn facebook"
+                    id="facebookRegister"
+                >
+                    <i class="fa-brands fa-facebook-f"></i>
+                    <span>Facebook</span>
+                </button>
+        
+                <button
+                    type="button"
+                    class="social-btn instagram"
+                    id="instagramRegister"
+                >
+                    <i class="fa-brands fa-instagram"></i>
+                    <span>Instagram</span>
+                </button>
+        
+            </div>
+        
+        
+            <p class="switch-auth">
+                Already have an account?
+                <a href="login.html">Login</a>
+            </p>
+        
+        </section>
+
+
+
+    </div>
+</div>
+
+<script type="module" src="js/firebase-core.js"></script>
+<script src="js/phone.js"></script>
+<script type="module" src="js/auth.js"></script>
+</body>
+</html>

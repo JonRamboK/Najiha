@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Product details — Najiha Closet premium kidswear.">
+<title id="pageTitle">Product | Najiha Closet</title>
+<link rel="icon" href="assets/logo.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,500;0,600;0,700;1,500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/responsive.css">
+<link rel="stylesheet" href="css/extra.css">
+<style>
+.pd-wrap { max-width: var(--container); margin: 0 auto; padding: 0 28px 60px; display: grid; grid-template-columns: 1fr 1fr; gap: 46px; }
+.pd-gallery-main { border-radius: var(--radius-lg); overflow: hidden; aspect-ratio: 1/1.05; margin-bottom: 12px; }
+.pd-gallery-main img { width: 100%; height: 100%; object-fit: cover; }
+.pd-thumbs { display: flex; gap: 10px; }
+.pd-thumbs img { width: 76px; height: 76px; border-radius: 12px; object-fit: cover; cursor: pointer; opacity: 0.6; border: 2px solid transparent; }
+.pd-thumbs img.active { opacity: 1; border-color: var(--rose-gold); }
+.pd-title { font-size: 30px; margin-bottom: 8px; }
+.pd-meta-row { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; color: var(--muted); font-size: 13.5px; }
+.pd-price-row { display: flex; align-items: baseline; gap: 12px; margin-bottom: 22px; }
+.pd-price-now { font-size: 26px; font-weight: 800; color: var(--rose-gold-dark); }
+.pd-price-compare { text-decoration: line-through; color: var(--muted); font-size: 15px; }
+.size-row { display: flex; flex-wrap: wrap; gap: 10px; margin: 10px 0 24px; }
+.size-chip { border: 1.5px solid var(--line); border-radius: 10px; padding: 9px 16px; font-size: 13px; font-weight: 700; cursor: pointer; background: var(--white); }
+.size-chip.active { border-color: var(--rose-gold); background: var(--blush); color: var(--rose-gold-dark); }
+.pd-qty { display: flex; align-items: center; gap: 14px; margin-bottom: 24px; }
+.pd-actions { display: flex; gap: 12px; margin-bottom: 30px; }
+.pd-actions .btn { flex: 1; justify-content: center; }
+.pd-accordion { border-top: 1px solid var(--line); }
+.pd-accordion-item { border-bottom: 1px solid var(--line); }
+.pd-accordion-item button { width: 100%; text-align: left; padding: 16px 2px; background: none; border: none; font-family: inherit; font-size: 14.5px; font-weight: 700; display: flex; justify-content: space-between; cursor: pointer; }
+.pd-accordion-item .pd-accordion-body { display: none; padding-bottom: 16px; font-size: 13.5px; color: var(--muted); }
+.pd-accordion-item.open .pd-accordion-body { display: block; }
+.related-section { max-width: var(--container); margin: 10px auto 70px; padding: 0 28px; }
+@media (max-width: 860px) { .pd-wrap { grid-template-columns: 1fr; padding-left: 18px; padding-right: 18px; } }
+@media (max-width: 480px) {
+  .pd-actions { flex-wrap: wrap; }
+  .pd-actions .btn { flex: 1 1 100%; }
+  .pd-actions #pdWishlist { flex: 0 0 auto; order: -1; margin-left: auto; }
+  .pd-title { font-size: 24px; }
+  .pd-gallery-main { aspect-ratio: 1/1; }
+}
+</style>
+</head>
+<body>
+
+<script src="js/loader.js"></script>
+<div id="site-navbar"></div>
+
+<main id="main">
+  <section class="pd-wrap" style="padding-top:30px;">
+    <div>
+      <div class="pd-gallery-main"><img id="pdMainImage" src="" alt=""></div>
+      <div class="pd-thumbs" id="pdThumbs"></div>
+    </div>
+    <div id="pdInfo">
+      <span class="product-cat" id="pdCat"></span>
+      <h1 class="pd-title" id="pdName"></h1>
+      <div class="pd-meta-row"><span id="pdRating">★★★★★</span><span id="pdAge"></span></div>
+      <div class="pd-price-row"><span class="pd-price-now" id="pdPrice"></span><span class="pd-price-compare" id="pdCompare"></span></div>
+      <p id="pdDesc" style="margin-bottom:6px;">Soft, breathable fabric finished to a boutique standard — cut generously for how little ones actually move and play.</p>
+
+      <h4 style="font-size:13px;margin-top:22px;">Select size</h4>
+      <div class="size-row" id="pdSizes"></div>
+
+      <div class="pd-qty">
+        <span style="font-size:13px;font-weight:700;">Quantity</span>
+        <div class="qty-control"><button id="pdQtyDown">−</button><span id="pdQtyVal">1</span><button id="pdQtyUp">+</button></div>
+      </div>
+
+      <div class="pd-actions">
+        <button class="btn btn-primary" id="pdAddToCart"><i class="fa-solid fa-bag-shopping"></i> Add to Cart</button>
+        <button class="btn btn-outline" id="pdApply"><i class="fa-solid fa-bolt"></i> Order Now</button>
+        <button class="wishlist-btn" id="pdWishlist" style="position:static;width:46px;height:46px;" aria-label="Wishlist"><i class="fa-regular fa-heart"></i></button>
+      </div>
+
+      <div class="pd-accordion">
+        <div class="pd-accordion-item open">
+          <button data-acc>Custom sizing <i class="fa-solid fa-chevron-down"></i></button>
+          <div class="pd-accordion-body">Don't see your child's exact size? Visit our <a href="custom-size.html">Custom Size</a> page and we'll tailor this piece to their measurements.</div>
+        </div>
+        <div class="pd-accordion-item">
+          <button data-acc>Delivery &amp; returns <i class="fa-solid fa-chevron-down"></i></button>
+          <div class="pd-accordion-body">Free delivery in Karachi on orders above Rs. 4,000. Easy exchanges within 3 days of delivery if the size doesn't fit.</div>
+        </div>
+        <div class="pd-accordion-item">
+          <button data-acc>Care instructions <i class="fa-solid fa-chevron-down"></i></button>
+          <div class="pd-accordion-body">Gentle machine wash, cold water. Do not bleach. Iron on low heat, inside out.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="related-section">
+    <div class="section-head" style="margin-bottom:18px;">
+      <div><span class="section-eyebrow">You May Also Like</span><h2>Complete the look</h2></div>
+    </div>
+    <div class="card-carousel-row">
+      <button class="carousel-arrow prev" aria-label="Previous"><i class="fa-solid fa-chevron-left"></i></button>
+      <div class="card-carousel" id="relatedRow" style="padding:4px 2px 14px;"></div>
+      <button class="carousel-arrow next" aria-label="Next"><i class="fa-solid fa-chevron-right"></i></button>
+    </div>
+  </section>
+</main>
+
+<div id="site-footer"></div>
+
+<script type="module" src="js/firebase-core.js"></script>
+<script type="module" src="js/cart.js"></script>
+<script type="module" src="js/navbar.js"></script>
+<script type="module" src="js/footer.js"></script>
+<script type="module">
+import { getProductById, getAllProducts, formatPrice } from './js/products.js';
+import { addToCart, toggleWishlist, isWishlisted, pushRecentlyViewed } from './js/cart.js';
+import { hideLoadScreen, initFloatingButtons, initRevealOnScroll, showToast, openLoginRequiredModal } from './js/ui.js';
+import { isLoggedIn, onAuthReady } from './js/auth-state.js';
+import { initCardRow } from './js/carousel.js';
+
+// Demo mode: guests can browse the grid, but a full product page requires an
+// account. Wait for Firebase's auth state to actually resolve first, so a
+// logged-in user refreshing the page never sees a false "please log in" flash.
+onAuthReady((user) => {
+  if (!user) openLoginRequiredModal(window.location.href);
+});
+
+const params = new URLSearchParams(location.search);
+const id = params.get('id');
+const product = getProductById(id) || getAllProducts()[0];
+let qty = 1;
+let selectedSize = product.sizes?.[0] || '';
+
+document.title = `${product.name} | Najiha Closet`;
+document.getElementById('pdCat').textContent = `${product.category} · ${product.occasion}`;
+document.getElementById('pdName').textContent = product.name;
+document.getElementById('pdAge').textContent = `Age ${product.ageGroup}`;
+document.getElementById('pdPrice').textContent = formatPrice(product.price);
+if (product.comparePrice > product.price) document.getElementById('pdCompare').textContent = formatPrice(product.comparePrice);
+
+const images = [product.image, product.image, product.image];
+document.getElementById('pdMainImage').src = product.image;
+document.getElementById('pdMainImage').alt = product.name;
+document.getElementById('pdThumbs').innerHTML = images.map((img, i) => `<img src="${img}" class="${i === 0 ? 'active' : ''}" data-thumb="${i}">`).join('');
+document.querySelectorAll('[data-thumb]').forEach(t => t.addEventListener('click', () => {
+  document.getElementById('pdMainImage').src = t.src;
+  document.querySelectorAll('[data-thumb]').forEach(x => x.classList.remove('active'));
+  t.classList.add('active');
+}));
+
+document.getElementById('pdSizes').innerHTML = (product.sizes || []).map(s =>
+  `<button class="size-chip ${s === selectedSize ? 'active' : ''}" data-size="${s}">${s}</button>`).join('');
+document.querySelectorAll('[data-size]').forEach(btn => btn.addEventListener('click', () => {
+  selectedSize = btn.dataset.size;
+  document.querySelectorAll('[data-size]').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+}));
+
+document.getElementById('pdQtyUp').addEventListener('click', () => { qty++; document.getElementById('pdQtyVal').textContent = qty; });
+document.getElementById('pdQtyDown').addEventListener('click', () => { qty = Math.max(1, qty - 1); document.getElementById('pdQtyVal').textContent = qty; });
+
+const wishBtn = document.getElementById('pdWishlist');
+if (isWishlisted(product.id)) { wishBtn.classList.add('active'); wishBtn.querySelector('i').className = 'fa-solid fa-heart'; }
+wishBtn.addEventListener('click', () => {
+  const active = toggleWishlist(product.id);
+  wishBtn.querySelector('i').className = active ? 'fa-solid fa-heart' : 'fa-regular fa-heart';
+  showToast(active ? 'Added to wishlist' : 'Removed from wishlist');
+});
+
+document.getElementById('pdAddToCart').addEventListener('click', () => {
+  addToCart(product, selectedSize, qty);
+  showToast(`${product.name} added to cart`);
+});
+
+document.getElementById('pdApply').addEventListener('click', () => {
+  if (!isLoggedIn()) { openLoginRequiredModal(`application.html?product=${product.id}`); return; }
+  window.location.href = `application.html?product=${product.id}`;
+});
+
+document.querySelectorAll('[data-acc]').forEach(btn => btn.addEventListener('click', () => {
+  btn.closest('.pd-accordion-item').classList.toggle('open');
+}));
+
+const related = getAllProducts().filter(p => p.id !== product.id && p.category === product.category).slice(0, 8);
+document.getElementById('relatedRow').innerHTML = related.map(p => `
+  <a href="product.html?id=${p.id}" style="text-decoration:none;width:210px;display:block;">
+    <div class="product-card">
+      <div class="product-thumb"><img src="${p.image}" alt="${p.name}" loading="lazy"></div>
+      <div class="product-info">
+        <span class="product-cat">${p.category}</span>
+        <h3 class="product-name">${p.name}</h3>
+        <span class="price-now">${formatPrice(p.price)}</span>
+      </div>
+    </div>
+  </a>`).join('');
+initCardRow('.card-carousel-row');
+
+pushRecentlyViewed(product.id);
+hideLoadScreen();
+initFloatingButtons();
+initRevealOnScroll();
+</script>
+</body>
+</html>

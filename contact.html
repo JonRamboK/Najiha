@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Contact Najiha Closet — sizing questions, order help, and wholesale inquiries.">
+<title>Contact Us | Najiha Closet</title>
+<link rel="icon" href="assets/logo.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,500;0,600;0,700;1,500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/responsive.css">
+<link rel="stylesheet" href="css/extra.css">
+<style>
+.contact-wrap { max-width: var(--container); margin: 0 auto 60px; padding: 0 28px; display: grid; grid-template-columns: 0.9fr 1.3fr; gap: 30px; }
+.contact-info-card, .contact-form-card { background: var(--white); border-radius: var(--radius-lg); padding: 34px; box-shadow: var(--shadow-soft); }
+.contact-detail { display: flex; gap: 14px; align-items: flex-start; margin-top: 20px; }
+.contact-detail i { width: 40px; height: 40px; border-radius: 50%; background: var(--blush); color: var(--rose-gold-dark); display: flex; align-items: center; justify-content: center; flex: none; }
+.contact-detail h5 { font-size: 13px; margin-bottom: 3px; }
+.two-columns { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.map-embed { max-width: var(--container); margin: 0 auto 60px; padding: 0 28px; }
+.map-embed iframe { width: 100%; height: 320px; border: 0; border-radius: var(--radius-lg); }
+@media (max-width: 900px) { .contact-wrap { grid-template-columns: 1fr; } .two-columns { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<script src="js/loader.js"></script>
+<div id="site-navbar"></div>
+
+<main id="main">
+  <section class="section-tight">
+    <div class="section-head" style="margin-bottom:6px;">
+      <div>
+        <span class="section-eyebrow">We're Here To Help</span>
+        <h2>Get in touch</h2>
+        <p>Questions about sizing, an order, or a bulk/wholesale inquiry? We'd love to help.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="contact-wrap">
+    <div class="contact-info-card">
+      <h3 style="font-size:20px;">Contact information</h3>
+      <p>Reach us directly or fill out the form — we usually reply within a few hours.</p>
+
+      <div class="contact-detail"><i class="fa-solid fa-envelope"></i><div><h5>Email</h5><a href="mailto:hello@najihacloset.com">hello@najihacloset.com</a></div></div>
+      <div class="contact-detail"><i class="fa-solid fa-phone"></i><div><h5>Phone</h5><a href="tel:+923001234567">+92 300 1234567</a></div></div>
+      <div class="contact-detail"><i class="fa-brands fa-whatsapp"></i><div><h5>WhatsApp</h5><a href="https://wa.me/923001234567" target="_blank" rel="noopener">Chat with us instantly</a></div></div>
+      <div class="contact-detail"><i class="fa-solid fa-location-dot"></i><div><h5>Location</h5><p>Karachi, Sindh, Pakistan</p></div></div>
+
+      <div class="footer-social" style="margin-top:26px;">
+        <a href="https://facebook.com/najihacloset" target="_blank" rel="noopener" style="background:var(--blush);color:var(--rose-gold-dark);"><i class="fa-brands fa-facebook-f"></i></a>
+        <a href="https://instagram.com/najihacloset" target="_blank" rel="noopener" style="background:var(--blush);color:var(--rose-gold-dark);"><i class="fa-brands fa-instagram"></i></a>
+        <a href="https://tiktok.com/@najihacloset" target="_blank" rel="noopener" style="background:var(--blush);color:var(--rose-gold-dark);"><i class="fa-brands fa-tiktok"></i></a>
+        <a href="https://youtube.com/@najihacloset" target="_blank" rel="noopener" style="background:var(--blush);color:var(--rose-gold-dark);"><i class="fa-brands fa-youtube"></i></a>
+      </div>
+    </div>
+
+    <div class="contact-form-card">
+      <h3 style="font-size:20px;margin-bottom:18px;">Send us a message</h3>
+      <form id="contactForm">
+        <div class="two-columns">
+          <div class="input-group"><label for="contactName">Full name</label>
+            <div class="input-wrapper"><i class="fa-regular fa-user"></i><input type="text" id="contactName" placeholder="Your name" required></div></div>
+          <div class="input-group"><label for="contactEmail">Email</label>
+            <div class="input-wrapper"><i class="fa-regular fa-envelope"></i><input type="email" id="contactEmail" placeholder="you@example.com" required></div></div>
+        </div>
+        <div class="two-columns">
+          <div class="input-group"><label for="contactPhone">Phone (optional)</label>
+            <div class="input-wrapper"><i class="fa-solid fa-phone"></i><input type="tel" id="contactPhone" placeholder="03xx xxxxxxx"></div></div>
+          <div class="input-group"><label for="contactSubject">Subject</label>
+            <div class="input-wrapper"><i class="fa-regular fa-comment"></i><input type="text" id="contactSubject" placeholder="Order inquiry, sizing, wholesale..."></div></div>
+        </div>
+        <div class="input-group"><label for="contactMessage">Message</label>
+          <textarea id="contactMessage" placeholder="Tell us how we can help..." required></textarea></div>
+        <button type="submit" class="main-btn" id="contactSubmitBtn"><i class="fa-solid fa-paper-plane"></i> Send message</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="map-embed">
+    <iframe src="https://www.google.com/maps?q=Karachi,Pakistan&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+  </div>
+</main>
+
+<div id="site-footer"></div>
+
+<script type="module" src="js/firebase-core.js"></script>
+<script type="module" src="js/cart.js"></script>
+<script type="module" src="js/navbar.js"></script>
+<script type="module" src="js/footer.js"></script>
+<script type="module">
+import { hideLoadScreen, initFloatingButtons } from './js/ui.js';
+hideLoadScreen();
+initFloatingButtons();
+</script>
+<script type="module" src="js/contact.js"></script>
+</body>
+</html>

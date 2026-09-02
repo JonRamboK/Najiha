@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Place an order — Najiha Closet.">
+<title>Order | Najiha Closet</title>
+<link rel="icon" href="assets/logo.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,500;0,600;0,700;1,500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/responsive.css">
+<link rel="stylesheet" href="css/extra.css">
+<style>
+.app-wrap { max-width: 960px; margin: 0 auto 60px; padding: 0 28px; display: grid; grid-template-columns: 1fr 1.2fr; gap: 34px; }
+.app-product-card { background: var(--white); border-radius: var(--radius-lg); padding: 22px; box-shadow: var(--shadow-soft); align-self: start; }
+.app-product-card img { width: 100%; aspect-ratio: 1/1; object-fit: cover; border-radius: var(--radius-md); margin-bottom: 16px; }
+.app-product-card h3 { font-size: 19px; margin-bottom: 6px; }
+.app-product-card .price-now { font-size: 18px; font-weight: 800; color: var(--rose-gold-dark); }
+.app-form-card { background: var(--white); border-radius: var(--radius-lg); padding: 32px; box-shadow: var(--shadow-soft); }
+@media (max-width: 860px) { .app-wrap { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<script src="js/loader.js"></script>
+<div id="site-navbar"></div>
+
+<main id="main">
+  <section class="section-tight">
+    <div class="section-head" style="margin-bottom:6px;">
+      <div>
+        <span class="section-eyebrow">Order Request</span>
+        <h2>Complete your order</h2>
+        <p>Confirm the details below and we'll follow up on WhatsApp to finalize.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="app-wrap" style="padding-top:10px;">
+    <div class="app-product-card" id="appProductCard"></div>
+
+    <div class="app-form-card">
+      <div id="appMessage" class="message"></div>
+      <form id="applicationForm">
+        <div class="two-columns">
+          <div class="input-group"><label for="appSize">Size</label>
+            <div class="input-wrapper"><i class="fa-solid fa-ruler"></i><select id="appSize" required></select></div></div>
+          <div class="input-group"><label for="appQty">Quantity</label>
+            <div class="input-wrapper"><i class="fa-solid fa-hashtag"></i><input type="number" id="appQty" min="1" value="1" required></div></div>
+        </div>
+        <div class="input-group"><label for="appAddress">Delivery address</label>
+          <textarea id="appAddress" placeholder="House / street, area, city" required></textarea></div>
+        <div class="two-columns">
+          <div class="input-group"><label for="appPhone">WhatsApp number</label>
+            <div class="input-wrapper"><i class="fa-brands fa-whatsapp"></i><input type="tel" id="appPhone" placeholder="03xx xxxxxxx" required></div></div>
+          <div class="input-group"><label for="appCity">City</label>
+            <div class="input-wrapper"><i class="fa-solid fa-city"></i><input type="text" id="appCity" placeholder="Karachi" required></div></div>
+        </div>
+        <div class="input-group"><label for="appNotes">Notes (optional)</label>
+          <textarea id="appNotes" placeholder="Gift wrap, preferred delivery time, etc."></textarea></div>
+
+        <button type="submit" class="main-btn" id="appSubmitBtn"><span>Place order</span><i class="fa-brands fa-whatsapp"></i></button>
+      </form>
+    </div>
+  </section>
+</main>
+
+<div id="site-footer"></div>
+
+<script type="module" src="js/firebase-core.js"></script>
+<script type="module" src="js/cart.js"></script>
+<script type="module" src="js/navbar.js"></script>
+<script type="module" src="js/footer.js"></script>
+<script type="module">
+import { getProductById, formatPrice } from './js/products.js';
+import { hideLoadScreen, initFloatingButtons, initRevealOnScroll, showToast } from './js/ui.js';
+import { auth, db, collection, addDoc, serverTimestamp, requireLogin } from './js/firebase-core.js';
+
+const params = new URLSearchParams(location.search);
+const product = getProductById(params.get('product'));
+
+if (!product) {
+  document.getElementById('appProductCard').innerHTML = `
+    <div class="empty-state">
+      <i class="fa-solid fa-circle-exclamation"></i>
+      <h3>Product not found</h3>
+      <p>This item may no longer be available.</p>
+      <a href="shop.html" class="btn btn-primary">Back to shop</a>
+    </div>`;
+} else {
+  document.getElementById('appProductCard').innerHTML = `
+    <img src="${product.image}" alt="${product.name}">
+    <span class="product-cat">${product.category} · ${product.occasion}</span>
+    <h3>${product.name}</h3>
+    <span class="price-now">${formatPrice(product.price)}</span>`;
+
+  const sizeSelect = document.getElementById('appSize');
+  sizeSelect.innerHTML = (product.sizes && product.sizes.length ? product.sizes : ['Custom']).map(s => `<option value="${s}">${s}</option>`).join('');
+}
+
+hideLoadScreen();
+initFloatingButtons();
+initRevealOnScroll();
+
+document.getElementById('applicationForm').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  if (!product) return;
+
+  const ok = await requireLogin('place this order');
+  if (!ok) return;
+
+  const btn = document.getElementById('appSubmitBtn');
+  const qty = Number(document.getElementById('appQty').value) || 1;
+  const size = document.getElementById('appSize').value;
+  const address = document.getElementById('appAddress').value.trim();
+  const city = document.getElementById('appCity').value.trim();
+  const phone = document.getElementById('appPhone').value.trim();
+  const notes = document.getElementById('appNotes').value.trim();
+  const user = auth.currentUser;
+  const total = product.price * qty;
+
+  btn.disabled = true;
+  btn.innerHTML = '<span class="loading-spinner"></span><span>Sending...</span>';
+
+  try {
+    await addDoc(collection(db, 'orders'), {
+      uid: user.uid,
+      customerName: user.displayName || '',
+      customerEmail: user.email || '',
+      phone, address, city, notes,
+      items: [{ id: product.id, name: product.name, image: product.image, price: product.price, size, qty }],
+      total, status: 'pending', createdAt: serverTimestamp(),
+    });
+  } catch (err) {
+    console.error(err);
+  }
+
+  const lines = [
+    'Hi Najiha Closet! I would like to order:',
+    `${product.name} (Size ${size}) x${qty} — ${formatPrice(total)}`,
+    `Delivery to: ${address}, ${city}`,
+    `Phone: ${phone}`,
+    notes ? `Notes: ${notes}` : '',
+    `Name: ${user.displayName || ''}`,
+  ].filter(Boolean).join('\n');
+
+  showToast('Order sent! We\'ll confirm on WhatsApp shortly.');
+  window.open(`https://wa.me/923001234567?text=${encodeURIComponent(lines)}`, '_blank');
+
+  btn.disabled = false;
+  btn.innerHTML = '<span>Place order</span><i class="fa-brands fa-whatsapp"></i>';
+  e.target.reset();
+});
+</script>
+</body>
+</html>

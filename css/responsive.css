@@ -1,0 +1,62 @@
+/* ===========================================================
+   NAJIHA CLOSET — Responsive rules
+   Breakpoints: 1280 / 1024 / 768 / 480 / 375
+   =========================================================== */
+
+@media (max-width: 1280px) {
+  .product-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (max-width: 1024px) {
+  .nav-links { display: none; }
+  .nav-toggle { display: block; }
+  .hero { grid-template-columns: 1fr; }
+  .hero-visual { order: -1; }
+  .hero h1 { font-size: 42px; }
+  .shop-layout { grid-template-columns: 220px 1fr; }
+  .trust-strip { grid-template-columns: repeat(2, 1fr); }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+}
+
+@media (max-width: 860px) {
+  .shop-layout { grid-template-columns: 1fr; }
+  .shop-sidebar { position: static; }
+}
+
+@media (max-width: 768px) {
+  .wrap, .section, .hero, .promo-banner, .trust-strip, .footer-grid, .footer-bottom { padding-left: 18px; padding-right: 18px; }
+  .navbar-inner { padding: 12px 18px; }
+  .product-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+  .section { padding: 46px 18px; }
+  .section-head h2 { font-size: 25px; }
+  .hero { padding: 30px 18px 20px; }
+  .hero h1 { font-size: 32px; }
+  .hero-visual { grid-template-columns: 1fr 1fr; gap: 10px; }
+  .hero-stats { gap: 20px; }
+  .promo-banner { flex-direction: column; text-align: center; align-items: center; padding: 34px 24px; }
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 30px; }
+  .float-btn { width: 48px; height: 48px; font-size: 19px; right: 16px; }
+  .whatsapp-float { bottom: 78px; }
+  .back-to-top { bottom: 18px; }
+  .filter-bar { flex-direction: column; align-items: stretch; }
+  .category-card, .category-card .cat-img { width: 110px; height: 110px; }
+}
+
+@media (max-width: 480px) {
+  .product-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .product-info { padding: 12px; }
+  .product-name { font-size: 14.5px; }
+  .price-now { font-size: 14.5px; }
+  .product-actions { flex-direction: column; }
+  .hero h1 { font-size: 27px; }
+  .hero-stats { flex-wrap: wrap; row-gap: 14px; }
+  .footer-grid { grid-template-columns: 1fr; gap: 28px; }
+  .footer-bottom { flex-direction: column; text-align: center; }
+  .modal-box { padding: 26px 20px; }
+  .promo-banner h3 { font-size: 21px; }
+}
+
+@media (max-width: 375px) {
+  .nav-logo span { display: none; }
+  .hero-actions .btn { width: 100%; justify-content: center; }
+}

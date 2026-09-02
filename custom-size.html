@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Order custom-tailored kidswear made to your child's exact measurements — Najiha Closet.">
+<title>Custom Size | Najiha Closet</title>
+<link rel="icon" href="assets/logo.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,500;0,600;0,700;1,500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/responsive.css">
+<link rel="stylesheet" href="css/extra.css">
+<style>
+.cs-wrap { max-width: var(--container); margin: 0 auto 60px; padding: 0 28px; display: grid; grid-template-columns: 1fr 1.2fr; gap: 40px; }
+.cs-steps { display: flex; flex-direction: column; gap: 20px; }
+.cs-step { display: flex; gap: 14px; }
+.cs-step .num { width: 34px; height: 34px; border-radius: 50%; background: var(--blush); color: var(--rose-gold-dark); font-weight: 800; display: flex; align-items: center; justify-content: center; flex: none; font-size: 13px; }
+.cs-form-card { background: var(--white); border-radius: var(--radius-lg); padding: 32px; box-shadow: var(--shadow-soft); }
+.measure-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0 16px; }
+@media (max-width: 860px) { .cs-wrap { grid-template-columns: 1fr; } .measure-grid { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<script src="js/loader.js"></script>
+<div id="site-navbar"></div>
+
+<main id="main">
+  <section class="section-tight">
+    <div class="section-head" style="margin-bottom:6px;">
+      <div>
+        <span class="section-eyebrow">Made To Measure</span>
+        <h2>Custom size order</h2>
+        <p>Tell us your child's measurements — or send a reference photo on WhatsApp — and we'll tailor the piece to fit.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="cs-wrap">
+    <div>
+      <div class="cs-steps">
+        <div class="cs-step"><div class="num">1</div><div><h4 style="font-size:14.5px;">Share measurements</h4><p>Fill the form with your child's measurements in inches, or select a standard size.</p></div></div>
+        <div class="cs-step"><div class="num">2</div><div><h4 style="font-size:14.5px;">We confirm on WhatsApp</h4><p>Our tailor reviews your request and confirms fabric, timeline, and price.</p></div></div>
+        <div class="cs-step"><div class="num">3</div><div><h4 style="font-size:14.5px;">Stitched &amp; delivered</h4><p>Most custom orders are ready within 7–10 days and delivered across Pakistan.</p></div></div>
+      </div>
+      <div class="gate-note" style="margin-top:28px;"><i class="fa-solid fa-ruler"></i> Not sure how to measure? Chest, waist, and length in inches is usually enough to get started.</div>
+    </div>
+
+    <div class="cs-form-card">
+      <div id="csMessage" class="message"></div>
+      <form id="customSizeForm">
+        <div class="measure-grid">
+          <div class="input-group"><label for="csChildName">Child's name</label>
+            <div class="input-wrapper"><i class="fa-regular fa-user"></i><input type="text" id="csChildName" required></div></div>
+          <div class="input-group"><label for="csAge">Age</label>
+            <div class="input-wrapper"><i class="fa-regular fa-calendar"></i><input type="text" id="csAge" placeholder="e.g. 4 years" required></div></div>
+        </div>
+        <div class="measure-grid">
+          <div class="input-group"><label for="csChest">Chest (in)</label><input type="number" id="csChest" step="0.5"></div>
+          <div class="input-group"><label for="csWaist">Waist (in)</label><input type="number" id="csWaist" step="0.5"></div>
+        </div>
+        <div class="measure-grid">
+          <div class="input-group"><label for="csLength">Length (in)</label><input type="number" id="csLength" step="0.5"></div>
+          <div class="input-group"><label for="csSleeve">Sleeve (in)</label><input type="number" id="csSleeve" step="0.5"></div>
+        </div>
+        <div class="input-group"><label for="csOccasion">Occasion</label>
+          <div class="input-wrapper"><i class="fa-solid fa-star"></i>
+            <select id="csOccasion">
+              <option>Everyday Wear</option><option>Party Wear</option><option>Eid Collection</option><option>Other</option>
+            </select>
+          </div>
+        </div>
+        <div class="input-group"><label for="csNotes">Notes / reference design</label>
+          <textarea id="csNotes" placeholder="Fabric preference, color, or describe a design you have in mind..."></textarea></div>
+        <div class="measure-grid">
+          <div class="input-group"><label for="csPhone">WhatsApp number</label>
+            <div class="input-wrapper"><i class="fa-brands fa-whatsapp"></i><input type="tel" id="csPhone" placeholder="03xx xxxxxxx" required></div></div>
+          <div class="input-group"><label for="csEmail">Email (optional)</label>
+            <div class="input-wrapper"><i class="fa-regular fa-envelope"></i><input type="email" id="csEmail"></div></div>
+        </div>
+        <button type="submit" class="main-btn" id="csSubmitBtn"><span>Submit custom order</span><i class="fa-brands fa-whatsapp"></i></button>
+      </form>
+    </div>
+  </div>
+</main>
+
+<div id="site-footer"></div>
+
+<script type="module" src="js/firebase-core.js"></script>
+<script type="module" src="js/cart.js"></script>
+<script type="module" src="js/navbar.js"></script>
+<script type="module" src="js/footer.js"></script>
+<script type="module">
+import { hideLoadScreen, initFloatingButtons, initRevealOnScroll, showToast } from './js/ui.js';
+import { auth, db, collection, addDoc, serverTimestamp } from './js/firebase-core.js';
+import { DEMO_MODE } from './js/config.js';
+
+hideLoadScreen();
+initFloatingButtons();
+initRevealOnScroll();
+
+const form = document.getElementById('customSizeForm');
+form.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const btn = document.getElementById('csSubmitBtn');
+  const data = {
+    childName: document.getElementById('csChildName').value.trim(),
+    age: document.getElementById('csAge').value.trim(),
+    chest: document.getElementById('csChest').value,
+    waist: document.getElementById('csWaist').value,
+    length: document.getElementById('csLength').value,
+    sleeve: document.getElementById('csSleeve').value,
+    occasion: document.getElementById('csOccasion').value,
+    notes: document.getElementById('csNotes').value.trim(),
+    phone: document.getElementById('csPhone').value.trim(),
+    email: document.getElementById('csEmail').value.trim(),
+    uid: auth.currentUser?.uid || null,
+    status: 'pending',
+  };
+
+  btn.disabled = true;
+  btn.innerHTML = '<span class="loading-spinner"></span><span>Sending...</span>';
+
+  try {
+    if (!DEMO_MODE) {
+      await addDoc(collection(db, 'customOrders'), { ...data, createdAt: serverTimestamp() });
+    }
+  } catch (err) {
+    console.error(err);
+  }
+
+  const lines = [
+    'Hi Najiha Closet! I would like a custom order:',
+    `Child: ${data.childName} (${data.age})`,
+    `Chest: ${data.chest || '-'} | Waist: ${data.waist || '-'} | Length: ${data.length || '-'} | Sleeve: ${data.sleeve || '-'}`,
+    `Occasion: ${data.occasion}`,
+    data.notes ? `Notes: ${data.notes}` : '',
+  ].filter(Boolean).join('\n');
+
+  showToast('Custom order sent! We\'ll confirm on WhatsApp shortly.');
+  window.open(`https://wa.me/923001234567?text=${encodeURIComponent(lines)}`, '_blank');
+  form.reset();
+  btn.disabled = false;
+  btn.innerHTML = '<span>Submit custom order</span><i class="fa-brands fa-whatsapp"></i>';
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Najiha Closet style gallery — real looks from our kidswear collection.">
+<title>Gallery | Najiha Closet</title>
+<link rel="icon" href="assets/logo.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,500;0,600;0,700;1,500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/responsive.css">
+<link rel="stylesheet" href="css/extra.css">
+</head>
+<body>
+
+<script src="js/loader.js"></script>
+<div id="site-navbar"></div>
+
+<main id="main">
+  <section class="section-tight">
+    <div class="section-head" style="margin-bottom:6px;">
+      <div>
+        <span class="section-eyebrow">Style Gallery</span>
+        <h2>Real looks, real little ones</h2>
+        <p>A look inside our collection — party wear, everyday sets, and custom-tailored pieces.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:10px;">
+    <div class="filter-pills" id="galleryFilters" style="margin-bottom:22px;"></div>
+    <div class="gallery-grid" id="galleryGrid"></div>
+  </section>
+</main>
+
+<div id="site-footer"></div>
+
+<div class="lightbox-overlay" id="lightbox">
+  <button class="lightbox-close" id="lightboxClose"><i class="fa-solid fa-xmark"></i></button>
+  <button class="lightbox-nav prev" id="lightboxPrev"><i class="fa-solid fa-chevron-left"></i></button>
+  <img id="lightboxImg" src="" alt="">
+  <button class="lightbox-nav next" id="lightboxNext"><i class="fa-solid fa-chevron-right"></i></button>
+</div>
+
+<script type="module" src="js/firebase-core.js"></script>
+<script type="module" src="js/cart.js"></script>
+<script type="module" src="js/navbar.js"></script>
+<script type="module" src="js/footer.js"></script>
+<script type="module">
+import { hideLoadScreen, initFloatingButtons, initRevealOnScroll } from './js/ui.js';
+
+const CATS = [
+  { key: 'all', label: 'All' },
+  { key: 'girls', label: 'Girls' },
+  { key: 'boys', label: 'Boys' },
+  { key: 'baby', label: 'Baby' },
+  { key: 'party', label: 'Party Wear' },
+  { key: 'eid', label: 'Eid Collection' },
+];
+
+const IMAGES = Array.from({ length: 24 }, (_, i) => ({
+  cat: CATS[1 + (i % 5)].key,
+  src: `https://picsum.photos/seed/nc-gallery-${i}/500/${600 + (i % 4) * 60}`,
+}));
+
+let active = 'all';
+let filtered = IMAGES;
+let currentIndex = 0;
+
+function renderFilters() {
+  document.getElementById('galleryFilters').innerHTML = CATS.map(c =>
+    `<button class="filter-pill ${active === c.key ? 'active' : ''}" data-f="${c.key}">${c.label}</button>`).join('');
+  document.querySelectorAll('[data-f]').forEach(b => b.addEventListener('click', () => {
+    active = b.dataset.f;
+    renderFilters();
+    renderGrid();
+  }));
+}
+
+function renderGrid() {
+  filtered = active === 'all' ? IMAGES : IMAGES.filter(i => i.cat === active);
+  document.getElementById('galleryGrid').innerHTML = filtered.map((img, i) =>
+    `<img src="${img.src}" alt="Najiha Closet look" loading="lazy" data-idx="${i}">`).join('');
+  document.querySelectorAll('[data-idx]').forEach(img => img.addEventListener('click', () => openLightbox(Number(img.dataset.idx))));
+}
+
+function openLightbox(i) {
+  currentIndex = i;
+  document.getElementById('lightboxImg').src = filtered[i].src;
+  document.getElementById('lightbox').classList.add('open');
+}
+function step(dir) {
+  currentIndex = (currentIndex + dir + filtered.length) % filtered.length;
+  document.getElementById('lightboxImg').src = filtered[currentIndex].src;
+}
+
+document.getElementById('lightboxClose').addEventListener('click', () => document.getElementById('lightbox').classList.remove('open'));
+document.getElementById('lightbox').addEventListener('click', (e) => { if (e.target.id === 'lightbox') e.currentTarget.classList.remove('open'); });
+document.getElementById('lightboxPrev').addEventListener('click', () => step(-1));
+document.getElementById('lightboxNext').addEventListener('click', () => step(1));
+document.addEventListener('keydown', (e) => {
+  if (!document.getElementById('lightbox').classList.contains('open')) return;
+  if (e.key === 'Escape') document.getElementById('lightbox').classList.remove('open');
+  if (e.key === 'ArrowRight') step(1);
+  if (e.key === 'ArrowLeft') step(-1);
+});
+
+renderFilters();
+renderGrid();
+hideLoadScreen();
+initFloatingButtons();
+initRevealOnScroll();
+</script>
+</body>
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="About Najiha Closet — premium kidswear designed and tailored in Karachi, Pakistan.">
+<title>About Us | Najiha Closet</title>
+<link rel="icon" href="assets/logo.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,500;0,600;0,700;1,500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/responsive.css">
+<link rel="stylesheet" href="css/extra.css">
+<style>
+.about-hero { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; max-width: var(--container); margin: 0 auto 60px; padding: 20px 28px; }
+.timeline { position: relative; max-width: var(--container); margin: 0 auto 60px; padding: 0 28px; }
+.timeline-row { display: grid; grid-template-columns: 100px 1fr; gap: 24px; padding: 20px 0; border-bottom: 1px solid var(--line); }
+.timeline-row strong { color: var(--rose-gold-dark); font-size: 15px; }
+.value-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; max-width: var(--container); margin: 0 auto 60px; padding: 0 28px; }
+.value-card { background: var(--white); border-radius: var(--radius-md); padding: 26px 20px; text-align: center; box-shadow: var(--shadow-soft); }
+.value-card i { font-size: 24px; color: var(--rose-gold-dark); margin-bottom: 12px; }
+@media (max-width: 860px) { .about-hero { grid-template-columns: 1fr; } .value-grid { grid-template-columns: 1fr 1fr; } }
+</style>
+</head>
+<body>
+
+<script src="js/loader.js"></script>
+<div id="site-navbar"></div>
+
+<main id="main">
+  <section class="about-hero">
+    <div class="hero-visual" style="grid-template-columns:1fr 1fr;">
+      <div class="tile tall"><img src="https://picsum.photos/seed/nc-about-1/500/900" alt="Najiha Closet tailoring"></div>
+      <div class="tile"><img src="https://picsum.photos/seed/nc-about-2/500/440" alt="Fabric selection"></div>
+    </div>
+    <div>
+      <span class="hero-eyebrow">Our Story</span>
+      <h1 style="font-size:36px;margin-bottom:14px;">Little clothes, made with a lot of care</h1>
+      <p style="margin-bottom:18px;">Najiha Closet began as a small home-run tailoring service in Karachi, built around a simple idea: kidswear should feel as good as it looks — soft enough for play, and pretty enough for Eid. What started with a handful of custom orders has grown into a full collection spanning newborn essentials to party-ready pieces, all still finished with the same attention to fit and fabric.</p>
+      <p>Every custom order is measured, cut, and stitched by our small team, and every ready-made piece goes through the same quality checks before it reaches your door.</p>
+    </div>
+  </section>
+
+  <section class="section reveal" style="background:var(--blush);border-radius:var(--radius-lg);">
+    <div class="section-head" style="margin-bottom:6px;"><div><span class="section-eyebrow">What We Stand For</span><h2>Our values</h2></div></div>
+    <div class="value-grid" style="margin-top:24px;padding:0;">
+      <div class="value-card"><i class="fa-solid fa-gem"></i><h4>Quality first</h4><p style="font-size:12.5px;">Fabrics and stitching checked by hand.</p></div>
+      <div class="value-card"><i class="fa-solid fa-ruler-combined"></i><h4>Made to fit</h4><p style="font-size:12.5px;">Real measurements, not guesswork.</p></div>
+      <div class="value-card"><i class="fa-solid fa-leaf"></i><h4>Comfort always</h4><p style="font-size:12.5px;">Skin-friendly, breathable materials.</p></div>
+      <div class="value-card"><i class="fa-solid fa-heart"></i><h4>Family run</h4><p style="font-size:12.5px;">A small Karachi team you can message directly.</p></div>
+    </div>
+  </section>
+
+  <section class="section reveal">
+    <div class="section-head" style="margin-bottom:6px;"><div><span class="section-eyebrow">Milestones</span><h2>How we got here</h2></div></div>
+  </section>
+  <div class="timeline">
+    <div class="timeline-row"><strong>2021</strong><div>Started taking custom Eid orders from home, one family at a time.</div></div>
+    <div class="timeline-row"><strong>2023</strong><div>Launched our first ready-made collection for girls and boys, sized newborn to 6 years.</div></div>
+    <div class="timeline-row"><strong>2025</strong><div>Crossed 100 products and introduced WhatsApp ordering for faster checkout.</div></div>
+    <div class="timeline-row"><strong>2026</strong><div>Moved online with najihacloset.com — custom sizing and delivery across Pakistan.</div></div>
+  </div>
+
+  <section class="section reveal" style="text-align:center;">
+    <span class="section-eyebrow">Visit Or Message Us</span>
+    <h2 style="margin-bottom:16px;">Karachi, Pakistan</h2>
+    <p style="max-width:480px;margin:0 auto 22px;">Questions about sizing or a custom order? We reply fastest on WhatsApp.</p>
+    <a href="contact.html" class="btn btn-primary">Get in touch</a>
+  </section>
+</main>
+
+<div id="site-footer"></div>
+
+<script type="module" src="js/firebase-core.js"></script>
+<script type="module" src="js/cart.js"></script>
+<script type="module" src="js/navbar.js"></script>
+<script type="module" src="js/footer.js"></script>
+<script type="module">
+import { hideLoadScreen, initFloatingButtons, initRevealOnScroll } from './js/ui.js';
+hideLoadScreen();
+initFloatingButtons();
+initRevealOnScroll();
+</script>
+</body>
+</html>

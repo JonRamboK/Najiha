@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Najiha Closet fashion videos — lookbooks, Eid collection, and behind-the-scenes.">
+<title>Videos | Najiha Closet</title>
+<link rel="icon" href="assets/logo.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,500;0,600;0,700;1,500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/responsive.css">
+<link rel="stylesheet" href="css/extra.css">
+<style>
+.video-hero { max-width: var(--container); margin: 0 auto 40px; padding: 0 28px; }
+.video-hero .carousel { aspect-ratio: 21/8; }
+.video-modal { position: fixed; inset: 0; background: rgba(20,15,14,0.92); display: none; align-items: center; justify-content: center; z-index: 4000; padding: 30px; }
+.video-modal.open { display: flex; }
+.video-modal .frame-wrap { width: min(900px, 100%); aspect-ratio: 16/9; border-radius: var(--radius-md); overflow: hidden; }
+.video-modal iframe { width: 100%; height: 100%; border: 0; }
+.video-modal-close { position: absolute; top: 24px; right: 30px; background: none; border: none; color: #fff; font-size: 26px; cursor: pointer; }
+.play-overlay { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; background: rgba(20,15,14,0.25); }
+.play-overlay i { width: 56px; height: 56px; border-radius: 50%; background: rgba(255,255,255,0.9); color: var(--rose-gold-dark); display: flex; align-items: center; justify-content: center; font-size: 18px; }
+</style>
+</head>
+<body>
+
+<script src="js/loader.js"></script>
+<div id="site-navbar"></div>
+
+<main id="main">
+  <section class="section-tight">
+    <div class="section-head" style="margin-bottom:6px;">
+      <div>
+        <span class="section-eyebrow">See It In Motion</span>
+        <h2>Baby &amp; kids fashion videos</h2>
+        <p>Lookbooks, Eid collection previews, and a peek behind our custom fitting process.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="video-hero">
+    <div class="carousel" id="videoHeroCarousel">
+      <div class="carousel-track">
+        <div class="carousel-slide"><img src="https://picsum.photos/seed/nc-video-hero-1/1200/460" alt=""><div class="carousel-caption"><span>Featured</span><h3>Eid Collection Lookbook 2026</h3></div></div>
+        <div class="carousel-slide"><img src="https://picsum.photos/seed/nc-video-hero-2/1200/460" alt=""><div class="carousel-caption"><span>Featured</span><h3>Twirl-Ready Party Dresses</h3></div></div>
+        <div class="carousel-slide"><img src="https://picsum.photos/seed/nc-video-hero-3/1200/460" alt=""><div class="carousel-caption"><span>Featured</span><h3>Behind The Custom Fitting</h3></div></div>
+      </div>
+      <button class="carousel-arrow prev" aria-label="Previous"><i class="fa-solid fa-chevron-left"></i></button>
+      <button class="carousel-arrow next" aria-label="Next"><i class="fa-solid fa-chevron-right"></i></button>
+      <div class="carousel-dots"></div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:10px;">
+    <div class="product-grid" style="grid-template-columns:repeat(3,1fr);" id="videoGrid"></div>
+  </section>
+</main>
+
+<div id="site-footer"></div>
+
+<div class="video-modal" id="videoModal">
+  <button class="video-modal-close" id="videoModalClose"><i class="fa-solid fa-xmark"></i></button>
+  <div class="frame-wrap"><iframe id="videoFrame" src="" allow="autoplay; encrypted-media" allowfullscreen></iframe></div>
+</div>
+
+<script type="module" src="js/firebase-core.js"></script>
+<script type="module" src="js/cart.js"></script>
+<script type="module" src="js/navbar.js"></script>
+<script type="module" src="js/footer.js"></script>
+<script type="module">
+import { hideLoadScreen, initFloatingButtons, initRevealOnScroll } from './js/ui.js';
+import { initCarousel } from './js/carousel.js';
+
+const VIDEOS = [
+  { title: 'Eid Collection Lookbook 2026', cat: 'Eid Collection', thumb: 'nc-video-1', youtube: 'dQw4w9WgXcQ' },
+  { title: 'Twirl-Ready Party Dresses', cat: 'Girls · Party', thumb: 'nc-video-2', youtube: 'dQw4w9WgXcQ' },
+  { title: 'Behind The Custom Fitting', cat: 'Custom Size', thumb: 'nc-video-3', youtube: 'dQw4w9WgXcQ' },
+  { title: 'Boys Casual Sets Lookbook', cat: 'Boys', thumb: 'nc-video-4', youtube: 'dQw4w9WgXcQ' },
+  { title: 'Newborn Essentials Guide', cat: 'Baby', thumb: 'nc-video-5', youtube: 'dQw4w9WgXcQ' },
+  { title: 'How We Stitch Every Order', cat: 'Behind The Scenes', thumb: 'nc-video-6', youtube: 'dQw4w9WgXcQ' },
+];
+
+document.getElementById('videoGrid').innerHTML = VIDEOS.map((v, i) => `
+  <div class="product-card" data-video="${i}" style="cursor:pointer;">
+    <div class="product-thumb" style="position:relative;">
+      <img src="https://picsum.photos/seed/${v.thumb}/500/650" alt="${v.title}">
+      <div class="play-overlay"><i class="fa-solid fa-play"></i></div>
+    </div>
+    <div class="product-info"><span class="product-cat">${v.cat}</span><h3 class="product-name">${v.title}</h3></div>
+  </div>`).join('');
+
+const modal = document.getElementById('videoModal');
+const frame = document.getElementById('videoFrame');
+document.querySelectorAll('[data-video]').forEach(card => card.addEventListener('click', () => {
+  const v = VIDEOS[Number(card.dataset.video)];
+  frame.src = `https://www.youtube.com/embed/${v.youtube}?autoplay=1`;
+  modal.classList.add('open');
+}));
+document.getElementById('videoModalClose').addEventListener('click', () => { modal.classList.remove('open'); frame.src = ''; });
+modal.addEventListener('click', (e) => { if (e.target === modal) { modal.classList.remove('open'); frame.src = ''; } });
+
+initCarousel('#videoHeroCarousel', { auto: true, interval: 5000 });
+hideLoadScreen();
+initFloatingButtons();
+initRevealOnScroll();
+</script>
+</body>
+</html>

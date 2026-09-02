@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin | Najiha Closet</title>
+    <link rel="icon" href="assets/logo.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,500;0,600;0,700;1,500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/responsive.css">
+<link rel="stylesheet" href="css/extra.css">
+</head>
+<body>
+
+<script src="js/loader.js"></script>
+
+<!-- Access gate shown when logged out / non-admin -->
+<div id="adminGate" style="min-height:100vh;display:none;align-items:center;justify-content:center;padding:20px;"></div>
+
+<div class="admin-shell" id="adminShell" style="display:none;">
+
+    <aside class="admin-side" id="adminSide">
+        <div class="admin-logo">
+            <img src="assets/logo.png" alt="Najiha Closet">
+            <span>Najiha Admin</span>
+        </div>
+
+        <ul class="admin-nav">
+            <li><button class="active" data-panel="dashboard"><i class="fa-solid fa-gauge"></i> Dashboard</button></li>
+            <li><button data-panel="products"><i class="fa-solid fa-shirt"></i> Products</button></li>
+            <li><button data-panel="orders"><i class="fa-solid fa-receipt"></i> Orders</button></li>
+            <li><button data-panel="messages"><i class="fa-solid fa-envelope"></i> Messages</button></li>
+            <li><button data-panel="users"><i class="fa-solid fa-users"></i> Users</button></li>
+        </ul>
+
+        <div style="border-top:1px solid rgba(255,255,255,0.1);padding-top:16px;">
+            <div style="font-size:11px;color:rgba(255,255,255,0.5);margin-bottom:10px;padding:0 8px;" id="adminUserEmail"></div>
+            <button id="adminLogoutBtn" style="width:100%;text-align:left;display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:10px;background:transparent;border:none;color:#fca5a5;cursor:pointer;font-family:inherit;font-size:13.5px;font-weight:600;">
+                <i class="fa-solid fa-arrow-right-from-bracket" style="width:18px;"></i> Logout
+            </button>
+            <a href="index.html" style="display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:10px;color:rgba(255,255,255,0.7);text-decoration:none;font-size:13.5px;font-weight:600;">
+                <i class="fa-solid fa-arrow-left" style="width:18px;"></i> Back to store
+            </a>
+        </div>
+    </aside>
+
+    <main class="admin-main">
+        <div class="admin-topbar">
+            <div style="display:flex;align-items:center;gap:14px;">
+                <button class="nav-toggle" id="adminMenuToggle" style="display:none;"><i class="fa-solid fa-bars"></i></button>
+                <h1 id="adminPageTitle">Dashboard</h1>
+            </div>
+            <button class="btn btn-primary" id="addProductBtn"><i class="fa-solid fa-plus"></i> Add product</button>
+        </div>
+
+        <div class="admin-stats">
+            <div class="stat-card"><div class="stat-icon"><i class="fa-solid fa-shirt"></i></div><div><h3 id="statProducts">0</h3><p>Total products</p></div></div>
+            <div class="stat-card"><div class="stat-icon"><i class="fa-solid fa-receipt"></i></div><div><h3 id="statOrders">0</h3><p>Total orders</p></div></div>
+            <div class="stat-card"><div class="stat-icon"><i class="fa-solid fa-coins"></i></div><div><h3 id="statRevenue">Rs. 0</h3><p>Total revenue</p></div></div>
+            <div class="stat-card"><div class="stat-icon"><i class="fa-solid fa-envelope"></i></div><div><h3 id="statMessages">0</h3><p>Unread messages</p></div></div>
+        </div>
+
+        <!-- DASHBOARD -->
+        <div class="admin-panel active" id="panel-dashboard">
+            <h3 style="font-family:var(--font-display);font-size:19px;margin-bottom:16px;">Recent orders</h3>
+            <div class="admin-table-wrap">
+                <table class="admin-table" id="dashboardOrdersPreview">
+                    <thead><tr><th>Order</th><th>Customer</th><th>Items</th><th>Total</th><th>Status</th><th>Date</th></tr></thead>
+                    <tbody id="ordersTableBody"><tr><td colspan="6" style="text-align:center;color:var(--muted);padding:30px;">Loading...</td></tr></tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- PRODUCTS -->
+        <div class="admin-panel" id="panel-products">
+            <div class="gate-note"><i class="fa-solid fa-circle-info"></i> Changes here update the live storefront instantly for every visitor.</div>
+            <div class="admin-table-wrap">
+                <table class="admin-table">
+                    <thead><tr><th>Image</th><th>Name</th><th>Category</th><th>Price</th><th>Stock</th><th>Badge</th><th>Actions</th></tr></thead>
+                    <tbody id="productsTableBody"><tr><td colspan="7" style="text-align:center;color:var(--muted);padding:30px;">Loading...</td></tr></tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- ORDERS -->
+        <div class="admin-panel" id="panel-orders">
+            <div class="admin-table-wrap">
+                <table class="admin-table">
+                    <thead><tr><th>Order</th><th>Customer</th><th>Items</th><th>Total</th><th>Status</th><th>Date</th></tr></thead>
+                    <tbody id="ordersTableBody2" data-mirror="ordersTableBody"></tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- MESSAGES -->
+        <div class="admin-panel" id="panel-messages">
+            <div class="admin-table-wrap">
+                <table class="admin-table">
+                    <thead><tr><th>Status</th><th>From</th><th>Subject</th><th>Message</th><th>Actions</th></tr></thead>
+                    <tbody id="messagesTableBody"><tr><td colspan="5" style="text-align:center;color:var(--muted);padding:30px;">Loading...</td></tr></tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- USERS -->
+        <div class="admin-panel" id="panel-users">
+            <div class="admin-table-wrap">
+                <table class="admin-table">
+                    <thead><tr><th>Name</th><th>Email</th><th>Phone</th><th>Status</th></tr></thead>
+                    <tbody id="usersTableBody"><tr><td colspan="4" style="text-align:center;color:var(--muted);padding:30px;">Loading...</td></tr></tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+</div>
+
+<!-- PRODUCT FORM MODAL -->
+<div class="modal-overlay" id="productFormModal">
+    <div class="modal-box" style="max-width:640px;padding:38px;">
+        <button class="modal-close" id="productFormClose"><i class="fa-solid fa-xmark"></i></button>
+        <h3 id="productFormTitle" style="font-family:var(--font-display);font-size:22px;margin-bottom:20px;">Add product</h3>
+
+        <form id="productForm">
+            <input type="hidden" id="pfId">
+            <div class="admin-form-grid">
+                <div class="input-group" style="grid-column:1/-1;">
+                    <label>Product name</label>
+                    <input type="text" id="pfName" placeholder="e.g. Blush Pink Party Frock" required>
+                </div>
+                <div class="input-group">
+                    <label>Category</label>
+                    <select id="pfCategory" required></select>
+                </div>
+                <div class="input-group">
+                    <label>Badge</label>
+                    <select id="pfBadge">
+                        <option value="">None</option>
+                        <option value="new">New</option>
+                        <option value="sale">Sale</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label>Price (Rs.)</label>
+                    <input type="number" id="pfPrice" min="0" required>
+                </div>
+                <div class="input-group">
+                    <label>Compare-at price (optional)</label>
+                    <input type="number" id="pfComparePrice" min="0">
+                </div>
+                <div class="input-group">
+                    <label>Stock quantity</label>
+                    <input type="number" id="pfStock" min="0" required>
+                </div>
+                <div class="input-group">
+                    <label>Sizes (comma separated)</label>
+                    <input type="text" id="pfSizes" placeholder="0-3M, 3-6M, 6-12M">
+                </div>
+                <div class="input-group" style="grid-column:1/-1;">
+                    <label>Image URL</label>
+                    <input type="text" id="pfImage" placeholder="https://... (leave blank to auto-generate)">
+                </div>
+                <div class="input-group" style="grid-column:1/-1;">
+                    <label>Description</label>
+                    <textarea id="pfDescription" placeholder="Short product description"></textarea>
+                </div>
+            </div>
+            <button type="submit" class="main-btn" style="margin-top:6px;"><i class="fa-solid fa-floppy-disk"></i> Save product</button>
+        </form>
+    </div>
+</div>
+
+<script type="module" src="js/firebase-core.js"></script>
+<script type="module" src="js/products.js"></script>
+<script type="module" src="js/admin.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        document.getElementById("adminMenuToggle").style.display = "";
+    });
+</script>
+</body>
+</html>
