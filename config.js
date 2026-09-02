@@ -5,17 +5,23 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/12.16.0/fireba
 
   // Your web app's Firebase configuration
   // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-  const firebaseConfig = {
-    apiKey: "AIzaSyBfWC26Nvc3LZji_io5747y94vnPuWIW2o",
-    authDomain: "najiha-2c3ca.firebaseapp.com",
-    databaseURL: "https://najiha-2c3ca-default-rtdb.asia-southeast1.firebasedatabase.app",
-    projectId: "najiha-2c3ca",
-    storageBucket: "najiha-2c3ca.firebasestorage.app",
-    messagingSenderId: "354444531724",
-    appId: "1:354444531724:web:a26f19c0dd7e337e7a7629",
-    measurementId: "G-HLK5CK8PES"
-  };
-
+   // Import the functions you need from the SDKs you need
+   import { initializeApp } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
+   // TODO: Add SDKs for Firebase products that you want to use
+   // https://firebase.google.com/docs/web/setup#available-libraries
+ 
+   // Your web app's Firebase configuration
+   const firebaseConfig = {
+     apiKey: "AIzaSyBIkL-LV7a9ev6TkW2-EwHQjHMKIyok3Fo",
+     authDomain: "najiha-closet.firebaseapp.com",
+     projectId: "najiha-closet",
+     storageBucket: "najiha-closet.firebasestorage.app",
+     messagingSenderId: "1050940124563",
+     appId: "1:1050940124563:web:e518019f04e5a0c6d78c66"
+   };
+ 
+   // Initialize Firebase
+   const app = initializeApp(firebaseConfig);
   // Initialize Firebase
   const app = initializeApp(firebaseConfig);
   const analytics = getAnalytics(app);
