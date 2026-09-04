@@ -1,4 +1,326 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="UTF-8"><title>Redirecting…</title>
-<meta http-equiv="refresh" content="0; url=index.html">
-</head><body>Redirecting to <a href="index.html">Najiha Closet</a>…</body></html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Najiha — Children's Boutique</title>
+
+  <!-- Preconnect for performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+  <!-- Design Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <!-- Najiha Design System -->
+  <link rel="stylesheet" href="najiha.css" />
+
+  <style>
+    /* ── Page-specific styles ── */
+
+    /* Hero section wrapper */
+    #carousel-mount { padding-top: 68px; }
+
+    /* Feature strip */
+    .feature-strip {
+      background: var(--white);
+      padding: 28px 5%;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .feature-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .feature-icon {
+      width: 44px; height: 44px;
+      background: var(--rose-light);
+      border-radius: var(--r-md);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 20px;
+      flex-shrink: 0;
+    }
+    .feature-item h4 { font-size: 13px; font-weight: 600; color: var(--ink); }
+    .feature-item p  { font-size: 11px; color: var(--gray-mid); margin-top: 2px; }
+
+    /* Category Showcase */
+    .category-showcase {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .cat-showcase-card {
+      border-radius: var(--r-lg);
+      overflow: hidden;
+      position: relative;
+      cursor: pointer;
+      aspect-ratio: 4/5;
+      background: var(--mist);
+    }
+    .cat-showcase-card img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s var(--ease);
+    }
+    .cat-showcase-card:hover img { transform: scale(1.06); }
+    .cat-showcase-label {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 2rem 1.5rem 1.5rem;
+      background: linear-gradient(0deg, rgba(28,28,30,0.75), transparent);
+      color: var(--white);
+    }
+    .cat-showcase-label h3 {
+      font-family: var(--font-display);
+      font-size: 22px;
+      margin-bottom: 6px;
+    }
+    .cat-showcase-label a {
+      font-size: 12px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--rose-light);
+      border-bottom: 1px solid var(--rose-light);
+      padding-bottom: 1px;
+    }
+
+    /* Banner section */
+    .banner-section {
+      background: var(--ink);
+      padding: 80px 5%;
+    }
+    .banner-grid {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+    .banner-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: var(--r-lg);
+      padding: 3rem 2.5rem;
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.3s;
+      cursor: pointer;
+    }
+    .banner-card:hover { border-color: var(--rose); }
+    .banner-card .deco {
+      position: absolute;
+      right: -10px; bottom: -20px;
+      font-size: 120px;
+      opacity: 0.05;
+      transform: rotate(-15deg);
+      pointer-events: none;
+    }
+    .banner-card h3 {
+      font-family: var(--font-display);
+      font-size: 28px;
+      color: var(--white);
+      margin: 10px 0 8px;
+    }
+    .banner-card p {
+      font-size: 14px;
+      color: rgba(255,255,255,0.5);
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+    }
+
+    @media (max-width: 900px) {
+      .feature-strip { grid-template-columns: repeat(2, 1fr); }
+      .category-showcase { grid-template-columns: 1fr 1fr; }
+      .banner-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 560px) {
+      .feature-strip { grid-template-columns: 1fr; }
+      .category-showcase { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── Navigation (injected by Activity layer) ── -->
+  <div id="nav-mount"></div>
+
+  <!-- ── Hero Carousel ── -->
+  <section id="hero">
+    <div id="carousel-mount"></div>
+  </section>
+
+  <!-- ── Feature Strip ── -->
+  <div class="feature-strip">
+    <div class="feature-item">
+      <div class="feature-icon">🚚</div>
+      <div><h4>Free Shipping</h4><p>On orders over $50</p></div>
+    </div>
+    <div class="feature-item">
+      <div class="feature-icon">↩️</div>
+      <div><h4>Easy Returns</h4><p>30-day return policy</p></div>
+    </div>
+    <div class="feature-item">
+      <div class="feature-icon">🔒</div>
+      <div><h4>Secure Payment</h4><p>100% protected checkout</p></div>
+    </div>
+    <div class="feature-item">
+      <div class="feature-icon">💬</div>
+      <div><h4>24/7 Support</h4><p>We're always here</p></div>
+    </div>
+  </div>
+
+  <!-- ── Category Showcase ── -->
+  <section id="featured" class="section section-mist">
+    <div style="max-width:1100px;margin:0 auto;">
+      <div class="section-head">
+        <div class="left">
+          <span class="label">Explore</span>
+          <h2 style="font-family:var(--font-display);font-size:38px;">Shop by Collection</h2>
+        </div>
+        <a href="#store" class="view-all">View All →</a>
+      </div>
+      <div class="category-showcase">
+        <div class="cat-showcase-card fade-up">
+          <img src="./rambo/Newborn.webp" alt="Baby Frocks" />
+          <div class="cat-showcase-label">
+            <h3>Australian Baby Frocks</h3>
+            <a href="#store">Shop Now</a>
+          </div>
+        </div>
+        <div class="cat-showcase-card fade-up delay-1">
+          <img src="./rambo/product.webp" alt="Indian Frocks" />
+          <div class="cat-showcase-label">
+            <h3>Indian Baby Frocks</h3>
+            <a href="#store">Shop Now</a>
+          </div>
+        </div>
+        <div class="cat-showcase-card fade-up delay-2">
+          <img src="./rambo/lhknculhknculhkn.webp" alt="Chinese Frocks" />
+          <div class="cat-showcase-label">
+            <h3>Chinese Baby Frocks</h3>
+            <a href="#store">Shop Now</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Featured Products ── -->
+  <section id="products" class="section">
+    <div style="max-width:1200px;margin:0 auto;">
+      <div class="section-head">
+        <div class="left">
+          <span class="label">Bestsellers</span>
+          <h2 style="font-family:var(--font-display);font-size:38px;">Most Loved Pieces</h2>
+        </div>
+        <a href="#store" class="view-all">See All Products →</a>
+      </div>
+      <!-- Products grid rendered by activity.js (first 8) -->
+      <div id="featured-products-grid" class="products-grid"></div>
+    </div>
+  </section>
+
+  <!-- ── Full Store ── -->
+  <section id="store" class="section section-mist">
+    <div style="max-width:1200px;margin:0 auto;">
+      <div class="section-head">
+        <div class="left">
+          <span class="label">The Collection</span>
+          <h2 style="font-family:var(--font-display);font-size:38px;">Explore Our Store</h2>
+        </div>
+      </div>
+      <!-- Product grid with filter — injected by Activity -->
+      <div id="products-mount"></div>
+    </div>
+  </section>
+
+  <!-- ── Banner Promo ── -->
+  <div class="banner-section">
+    <div class="banner-grid">
+      <div class="banner-card fade-up">
+        <span class="label">Limited Time</span>
+        <h3>Summer Sale — Up to 40% Off</h3>
+        <p>Refresh your little one's wardrobe with our seasonal clearance on select styles.</p>
+        <button class="btn-ghost" onclick="document.querySelector('.cat-pill[data-cat=dresses]')?.click();document.getElementById('store').scrollIntoView({behavior:'smooth'});">
+          Shop the Sale
+        </button>
+        <div class="deco">🌸</div>
+      </div>
+      <div class="banner-card fade-up delay-1">
+        <span class="label">New In</span>
+        <h3>Autumn Collection — Just Arrived</h3>
+        <p>Cozy knits, warm tones, and effortless style for the cooler months ahead.</p>
+        <button class="btn-ghost" onclick="document.getElementById('store').scrollIntoView({behavior:'smooth'});">
+          Discover Now
+        </button>
+        <div class="deco">🍂</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── More / CTA Section ── -->
+  <section style="background:linear-gradient(135deg,#1c1c1e 50%,#2d1a2e);padding:100px 5%;position:relative;overflow:hidden;">
+    <div style="position:absolute;right:10%;top:50%;transform:translateY(-50%);width:400px;height:400px;border-radius:50%;background:rgba(232,100,122,0.07);pointer-events:none;"></div>
+    <div style="max-width:600px;position:relative;z-index:1;">
+      <span class="label">Our Promise</span>
+      <h2 style="font-family:var(--font-display);font-size:clamp(36px,4vw,52px);color:white;margin:12px 0 16px;line-height:1.1;">The Perfect Piece for Your Special Day</h2>
+      <p style="color:rgba(255,255,255,0.6);font-size:16px;line-height:1.8;margin-bottom:2.5rem;">Thoughtfully made children's clothing designed for every occasion — from everyday adventures to unforgettable celebrations.</p>
+      <div style="display:flex;gap:1rem;flex-wrap:wrap;">
+        <a href="#store" class="btn-primary">Explore All Styles</a>
+        <a href="#contact-section" class="btn-ghost">Get in Touch</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Contact ── -->
+  <div id="contact-mount"></div>
+
+  <!-- ── Newsletter ── -->
+  <div id="newsletter-mount"></div>
+
+  <!-- ── Footer ── -->
+  <div id="footer-mount"></div>
+
+  <!-- ─────────────────────────────────────────────────────
+     Scripts: Model → Activity → Page Init
+  ────────────────────────────────────────────────────── -->
+  <script src="model.js"></script>
+  <script src="activity.js"></script>
+  <script>
+    // ── Page Activity: Home ──────────────────────────────
+    document.addEventListener('DOMContentLoaded', () => {
+
+      // 1. Mount shared shell components
+      NajihaActivity.mountNav('Home');
+      NajihaActivity.mountCarousel('carousel-mount');
+      NajihaActivity.mountContact('contact-mount');
+      NajihaActivity.mountNewsletter('newsletter-mount');
+      NajihaActivity.mountFooter();
+      NajihaActivity.mountSocialFloat();
+
+      // 2. Render featured products (first 8 only)
+      const featGrid = document.getElementById('featured-products-grid');
+      if (featGrid) {
+        const featured = NajihaModel.Products.featured(8);
+        featGrid.innerHTML = featured.map(NajihaActivity.renderProductCard).join('');
+        NajihaActivity.wireProductCards(featGrid);
+      }
+
+      // 3. Mount full product grid with category filter
+      NajihaActivity.mountProductGrid('products-mount', 'all');
+
+      // 4. Scrollspy
+      NajihaActivity.mountScrollspy(['hero', 'featured', 'products', 'store', 'contact-section']);
+    });
+  </script>
+
+</body>
+</html>

@@ -46,7 +46,7 @@
             </div>
         </section>
 
-        <section class="auth-card register-card">
+        <!-- <section class="auth-card register-card">
             <div class="auth-heading">
                 <span class="small-title"><i class="fa-solid fa-star"></i> CREATE ACCOUNT</span>
                 <h2>Get started</h2>
@@ -152,7 +152,358 @@
             </div>
 
             <p class="switch-auth">Already have an account? <a href="login.html">Login</a></p>
+        </section> -->
+
+        <section class="auth-card register-card">
+
+            <div class="auth-heading">
+                <span class="small-title">
+                    <i class="fa-solid fa-star"></i>
+                    CREATE ACCOUNT
+                </span>
+        
+                <h2>Get started</h2>
+                <p>Fill in the information below — it only takes a minute.</p>
+            </div>
+        
+            <div id="message" class="message"></div>
+        
+            <form id="registerForm">
+        
+                <!-- PERSONAL DETAILS -->
+                <div class="form-section-title">
+                    <i class="fa-solid fa-user"></i>
+                    <span>Personal details</span>
+                </div>
+        
+                <div class="two-columns">
+        
+                    <div class="input-group">
+                        <label for="firstName">First Name</label>
+        
+                        <div class="input-wrapper">
+                            <i class="fa-regular fa-user"></i>
+                            <input
+                                type="text"
+                                id="firstName"
+                                placeholder="First name"
+                                autocomplete="given-name"
+                                required
+                            >
+                        </div>
+                    </div>
+        
+                    <div class="input-group">
+                        <label for="lastName">Last Name</label>
+        
+                        <div class="input-wrapper">
+                            <i class="fa-regular fa-user"></i>
+                            <input
+                                type="text"
+                                id="lastName"
+                                placeholder="Last name"
+                                autocomplete="family-name"
+                                required
+                            >
+                        </div>
+                    </div>
+        
+                </div>
+        
+                <div class="two-columns">
+        
+                    <div class="input-group">
+                        <label for="dateOfBirth">Date of Birth</label>
+        
+                        <div class="input-wrapper">
+                            <i class="fa-regular fa-calendar"></i>
+                            <input
+                                type="date"
+                                id="dateOfBirth"
+                                required
+                            >
+                        </div>
+                    </div>
+        
+                    <div class="input-group">
+                        <label for="gender">Gender</label>
+        
+                        <div class="input-wrapper">
+                            <i class="fa-solid fa-venus-mars"></i>
+        
+                            <select id="gender" required>
+                                <option value="">Select gender</option>
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                    </div>
+        
+                </div>
+        
+        
+                <!-- CONTACT INFORMATION -->
+                <div class="form-section-title">
+                    <i class="fa-solid fa-address-card"></i>
+                    <span>Contact info</span>
+                </div>
+        
+                <div class="input-group">
+                    <label for="username">Username</label>
+        
+                    <div class="input-wrapper">
+                        <i class="fa-solid fa-at"></i>
+        
+                        <input
+                            type="text"
+                            id="username"
+                            placeholder="username"
+                            minlength="3"
+                            maxlength="30"
+                            autocomplete="username"
+                            required
+                        >
+                    </div>
+        
+                    <small class="input-help">
+                        3–30 characters. Letters, numbers and underscore.
+                    </small>
+                </div>
+        
+        
+                <div class="input-group">
+                    <label for="registerEmail">Gmail Address</label>
+        
+                    <div class="input-wrapper">
+                        <i class="fa-regular fa-envelope"></i>
+        
+                        <input
+                            type="email"
+                            id="registerEmail"
+                            placeholder="example@gmail.com"
+                            autocomplete="email"
+                            required
+                        >
+                    </div>
+        
+                    <small class="input-help">
+                        Only Gmail addresses are accepted.
+                    </small>
+                </div>
+        
+        
+                <div class="input-group">
+                    <label for="phone">Phone Number</label>
+        
+                    <div class="phone-wrapper">
+                        <input
+                            type="tel"
+                            id="phone"
+                            placeholder="Enter phone number"
+                            autocomplete="tel"
+                            required
+                        >
+                    </div>
+        
+                    <small id="phoneHelp" class="input-help">
+                        Select your country and enter your number.
+                    </small>
+                </div>
+        
+        
+                <!-- SECURITY -->
+                <div class="form-section-title">
+                    <i class="fa-solid fa-shield-halved"></i>
+                    <span>Security</span>
+                </div>
+        
+        
+                <div class="input-group">
+        
+                    <label for="registerPassword">
+                        Strong Password
+                    </label>
+        
+                    <div class="input-wrapper password-wrapper">
+        
+                        <i class="fa-solid fa-lock"></i>
+        
+                        <input
+                            type="password"
+                            id="registerPassword"
+                            placeholder="Create strong password"
+                            autocomplete="new-password"
+                            required
+                        >
+        
+                        <button
+                            type="button"
+                            class="password-toggle"
+                            data-target="registerPassword"
+                            aria-label="Show password"
+                        >
+                            <i class="fa-regular fa-eye"></i>
+                        </button>
+        
+                    </div>
+        
+        
+                    <div class="password-strength">
+        
+                        <div class="strength-bar">
+                            <span id="strengthProgress"></span>
+                        </div>
+        
+                        <span id="strengthText">
+                            Enter password
+                        </span>
+        
+                    </div>
+        
+        
+                    <ul class="password-rules">
+        
+                        <li id="ruleLength">
+                            <i class="fa-solid fa-circle"></i>
+                            8+ characters
+                        </li>
+        
+                        <li id="ruleUpper">
+                            <i class="fa-solid fa-circle"></i>
+                            One uppercase letter
+                        </li>
+        
+                        <li id="ruleLower">
+                            <i class="fa-solid fa-circle"></i>
+                            One lowercase letter
+                        </li>
+        
+                        <li id="ruleNumber">
+                            <i class="fa-solid fa-circle"></i>
+                            One number
+                        </li>
+        
+                        <li id="ruleSpecial">
+                            <i class="fa-solid fa-circle"></i>
+                            One special character
+                        </li>
+        
+                    </ul>
+        
+                </div>
+        
+        
+                <!-- CONFIRM PASSWORD -->
+                <div class="input-group">
+        
+                    <label for="confirmPassword">
+                        Confirm Password
+                    </label>
+        
+                    <div class="input-wrapper password-wrapper">
+        
+                        <i class="fa-solid fa-lock"></i>
+        
+                        <input
+                            type="password"
+                            id="confirmPassword"
+                            placeholder="Repeat your password"
+                            autocomplete="new-password"
+                            required
+                        >
+        
+                        <button
+                            type="button"
+                            class="password-toggle"
+                            data-target="confirmPassword"
+                            aria-label="Show password"
+                        >
+                            <i class="fa-regular fa-eye"></i>
+                        </button>
+        
+                    </div>
+        
+                </div>
+        
+        
+                <!-- TERMS -->
+                <label class="terms">
+        
+                    <input
+                        type="checkbox"
+                        id="terms"
+                        required
+                    >
+        
+                    <span>
+                        I agree to the
+                        <a href="#">Terms &amp; Conditions</a>
+                        and
+                        <a href="#">Privacy Policy</a>.
+                    </span>
+        
+                </label>
+        
+        
+                <!-- REGISTER BUTTON -->
+                <button
+                    type="submit"
+                    class="main-btn"
+                    id="registerBtn"
+                >
+                    <span>Create Account</span>
+                    <i class="fa-solid fa-user-plus"></i>
+                </button>
+        
+            </form>
+        
+        
+            <!-- SOCIAL REGISTER -->
+            <div class="divider">
+                <span>OR REGISTER WITH</span>
+            </div>
+        
+            <div class="social-buttons">
+        
+                <button
+                    type="button"
+                    class="social-btn google"
+                    id="googleRegister"
+                >
+                    <i class="fa-brands fa-google"></i>
+                    <span>Google</span>
+                </button>
+        
+                <button
+                    type="button"
+                    class="social-btn facebook"
+                    id="facebookRegister"
+                >
+                    <i class="fa-brands fa-facebook-f"></i>
+                    <span>Facebook</span>
+                </button>
+        
+                <button
+                    type="button"
+                    class="social-btn instagram"
+                    id="instagramRegister"
+                >
+                    <i class="fa-brands fa-instagram"></i>
+                    <span>Instagram</span>
+                </button>
+        
+            </div>
+        
+        
+            <p class="switch-auth">
+                Already have an account?
+                <a href="login.html">Login</a>
+            </p>
+        
         </section>
+
+
 
     </div>
 </div>

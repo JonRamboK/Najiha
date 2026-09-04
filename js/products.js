@@ -182,14 +182,16 @@ export function productCardHTML(p) {
   return `
   <div class="product-card ${outOfStock ? 'out-of-stock' : ''}" data-id="${p.id}">
     <div class="product-thumb">
-      <img src="${p.image}" alt="${p.name}" loading="lazy">
+      <a href="product.html?id=${p.id}" aria-label="View ${p.name}">
+        <img src="${p.image}" alt="${p.name}" loading="lazy">
+        <span class="quick-view-btn">Quick view</span>
+      </a>
       ${badge}
       <button class="wishlist-btn" data-wishlist="${p.id}" aria-label="Add to wishlist"><i class="fa-regular fa-heart"></i></button>
-      <a class="quick-view-btn" href="product.html?id=${p.id}">Quick view</a>
     </div>
     <div class="product-info">
       <span class="product-cat">${p.category} · ${p.occasion}</span>
-      <h3 class="product-name">${p.name}</h3>
+      <a href="product.html?id=${p.id}" class="product-name-link"><h3 class="product-name">${p.name}</h3></a>
       <span class="product-meta">Age ${p.ageGroup} · Sizes ${p.sizes.join(', ')}</span>
       <div class="product-price-row">
         <span class="price-now">${formatPrice(p.price)}</span>
