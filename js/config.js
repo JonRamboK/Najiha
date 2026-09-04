@@ -3,14 +3,12 @@
 // (Firebase console → Project settings → General → Your apps → SDK setup and configuration)
 
 export const firebaseConfig = {
-  apiKey: "AIzaSyBfWC26Nvc3LZji_io5747y94vnPuWIW2o",
-  authDomain: "najiha-2c3ca.firebaseapp.com",
-  databaseURL: "https://najiha-2c3ca-default-rtdb.asia-southeast1.firebasedatabase.app",
-  projectId: "najiha-2c3ca",
-  storageBucket: "najiha-2c3ca.firebasestorage.app",
-  messagingSenderId: "354444531724",
-  appId: "1:354444531724:web:a26f19c0dd7e337e7a7629",
-  measurementId: "G-HLK5CK8PES"
+  aapiKey: "AIzaSyBIkL-LV7a9ev6TkW2-EwHQjHMKIyok3Fo",
+  authDomain: "najiha-closet.firebaseapp.com",
+  projectId: "najiha-closet",
+  storageBucket: "najiha-closet.firebasestorage.app",
+  messagingSenderId: "1050940124563",
+  appId: "1:1050940124563:web:e518019f04e5a0c6d78c66"
 };
 
 // Toggle: while no real config is pasted above, the site runs in demo mode

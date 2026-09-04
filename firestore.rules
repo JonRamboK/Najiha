@@ -1,0 +1,85 @@
+rules_version = '2';
+
+// ============================================================
+// Najiha Closet — Firestore Security Rules
+//
+// HOW TO APPLY:
+// Firebase Console → your project (najiha-2c3ca) → Firestore Database
+// → Rules tab → paste this whole file → Publish.
+//
+// If you haven't created the Firestore database yet:
+// Firebase Console → Firestore Database → Create database →
+// choose "Start in production mode" → pick a region (e.g. asia-south1) → Enable.
+// Without this step, every read/write (including register/login profile saves)
+// will fail with a "client is offline" or "permission-denied" error.
+// ============================================================
+
+function isSignedIn() {
+  return request.auth != null;
+}
+
+function isOwner(uid) {
+  return isSignedIn() && request.auth.uid == uid;
+}
+
+// Keep this in sync with ADMIN_EMAILS in js/firebase-core.js
+function isAdmin() {
+  return isSignedIn() &&
+    request.auth.token.email in [
+      'admin@najihacloset.com',
+      'owner@najihacloset.com',
+      'ali1@gmail.com'
+    ];
+}
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Profile created by auth.js right after register/login.
+    // A user can read/write only their own document; admins can read all.
+    match /users/{uid} {
+      allow read: if isOwner(uid) || isAdmin();
+      allow create: if isOwner(uid);
+      allow update: if isOwner(uid) || isAdmin();
+      allow delete: if isAdmin();
+    }
+
+    // Product catalog — everyone can browse, only admins can edit.
+    match /products/{productId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    // Orders placed at checkout (cart-page.js) — a signed-in user creates
+    // their own order; only admins can list/update/delete all orders.
+    match /orders/{orderId} {
+      allow create: if isSignedIn() && request.resource.data.uid == request.auth.uid;
+      allow read: if isAdmin() || (isSignedIn() && resource.data.uid == request.auth.uid);
+      allow update, delete: if isAdmin();
+    }
+
+    // Custom-size / made-to-measure requests (custom-size.html).
+    match /customOrders/{orderId} {
+      allow create: if true;
+      allow read: if isAdmin() || (isSignedIn() && resource.data.uid == request.auth.uid);
+      allow update, delete: if isAdmin();
+    }
+
+    // Contact form (contact.js) — anyone can send a message, only admins read them.
+    match /messages/{messageId} {
+      allow create: if true;
+      allow read, update, delete: if isAdmin();
+    }
+
+    // Newsletter signups.
+    match /newsletter/{entryId} {
+      allow create: if true;
+      allow read, update, delete: if isAdmin();
+    }
+
+    // Admin activity log, if you add one later.
+    match /adminLogs/{logId} {
+      allow read, write: if isAdmin();
+    }
+  }
+}
