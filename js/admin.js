@@ -153,12 +153,12 @@ function openProductForm(product = null) {
     document.getElementById("pfBadge").value = product?.badge || "";
     document.getElementById("pfDescription").value = product?.description || "";
     modal.classList.add("show");
-    document.body.classList.add("no-scroll");
+    // document.body.classList.add("no-scroll");
 }
 
 document.getElementById("productFormClose")?.addEventListener("click", () => {
     document.getElementById("productFormModal").classList.remove("show");
-    document.body.classList.remove("no-scroll");
+    // document.body.classList.remove("no-scroll");
 });
 
 async function saveProductForm(e) {

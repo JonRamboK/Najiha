@@ -1357,10 +1357,10 @@ button { font-family: inherit; cursor: pointer; }
   display: flex; flex-direction: column;
 }
 .product-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lift); }
-/* .product-thumb is a plain div (wishlist button + the link can't nest
+.product-thumb is a plain div (wishlist button + the link can't nest
    inside each other — a <button> inside an <a> is invalid HTML). The inner
    <a> fills the whole thumb so the entire photo is tappable, including on
-   touch devices where the old hover-only "Quick view" link never worked. */
+   touch devices where the old hover-only "Quick view" link never worked. 
 .product-thumb { position: relative; aspect-ratio: 4/5; overflow: hidden; background: var(--blush); }
 .product-thumb > a { display: block; width: 100%; height: 100%; }
 .product-name-link { color: inherit; text-decoration: none; }
