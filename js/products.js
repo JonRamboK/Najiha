@@ -184,7 +184,7 @@ export function productCardHTML(p) {
     <div class="product-thumb">
       <a href="product.html?id=${p.id}" aria-label="View ${p.name}">
         <img src="${p.image}" alt="${p.name}" loading="lazy">
-        <span class="quick-view-btn">Quick view</span>
+        
       </a>
       ${badge}
       <button class="wishlist-btn" data-wishlist="${p.id}" aria-label="Add to wishlist"><i class="fa-regular fa-heart"></i></button>
